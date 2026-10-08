@@ -59,10 +59,11 @@ _LOCAL_DEV_LITERALS = {
     "DB_PASSWORD", "POSTGRES_PASSWORD", "MYSQL_PASSWORD", "MYSQL_ROOT_PASSWORD",
     "WORDPRESS_DB_PASSWORD",
 }
-_SECRETISH = re.compile(r"SECRET|_KEY$|PASSWORD")
+_SECRETISH = re.compile(r"SECRET|_KEY$|_TOKEN$|PASSWORD")
 
 
 def test_secret_looking_env_vars_reference_eggie_instead_of_a_literal():
+    checked = 0
     for name, compose in _skeletons().items():
         for service, spec in compose["services"].items():
             env = spec.get("environment") or {}
@@ -71,6 +72,9 @@ def test_secret_looking_env_vars_reference_eggie_instead_of_a_literal():
             for key, value in env.items():
                 if not _SECRETISH.search(key) or key in _LOCAL_DEV_LITERALS:
                     continue
-                assert str(value).startswith("${"), (
-                    f"{name}: {service}.{key} is a literal; use ${{{key}}} and list it in .env.example"
+                checked += 1
+                # `${X:-literal}` / `${X-literal}` would ship a default secret
+                assert re.fullmatch(r"\$\{[^}:\-]+\}", str(value)), (
+                    f"{name}: {service}.{key} must be a plain ${{NAME}} reference listed in .env.example"
                 )
+    assert checked, "no secret-looking env keys were checked"

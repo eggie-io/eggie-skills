@@ -78,7 +78,7 @@ docker compose run --rm -w /app backend npx create-medusa-app@latest backend --w
 rm backend/.env    # create-medusa-app wrote it; move its non-secret keys to the root .env.example
 openssl rand -hex 32 | eggie secret set JWT_SECRET
 openssl rand -hex 32 | eggie secret set COOKIE_SECRET
-eggie up
+eggie up    # wait until the DB answers before migrating
 # `docker compose run` gets none of Eggie's variables; use the running container (`docker ps`)
 docker exec <backend-container> npx medusa db:migrate
 docker exec <backend-container> npx medusa user -e owner@example.com -p <generate one>
@@ -98,4 +98,5 @@ Two folders usually exist already; keep their names in `working_dir` and read ea
   that loads but shows no products is CORS.
 - Medusa's dev server takes a minute to start the first time; poll the backend's `/health`.
 - Publishable API key: the storefront needs one from the admin (Settings → Publishable API
-  keys) in `NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY`.
+  keys) in `NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY`. It is publishable, not secret: it can be a
+  default in the root `.env.example` (from `storefront/.env.local`).

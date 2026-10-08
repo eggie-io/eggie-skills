@@ -51,6 +51,7 @@ Commit after each working step, with a message that says what changed for the ow
 ("Menu page shows photos", not "update templates"). Never commit `.env`, uploads or
 generated folders. Never create `.env` or write a secret value into any file: list names in
 `.env.example`, set values with `eggie secret set NAME` (`eggie secret list` shows them).
+A secret with a sample value (`changeme`, `YOUR_SECRET_HERE`) becomes a bare `NAME=`.
 
 ## Working on changes
 Size it first. Small (fits in one sentence, a few files): confirm in one message, do it,

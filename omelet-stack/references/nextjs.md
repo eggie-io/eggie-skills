@@ -51,11 +51,13 @@ web:
 docker compose run --rm web npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --no-import-alias --use-npm --yes
 docker compose run --rm web npm install prisma @prisma/client
 docker compose run --rm web npx prisma init --datasource-provider postgresql
+rm .env    # prisma init wrote it; DATABASE_URL is a compose literal
 # after writing schema.prisma:
 docker compose run --rm web npx prisma migrate dev --name init
 ```
 Accounts: `npm install next-auth@beta` (Auth.js) — never a hand-written session or password
-table. Add `AUTH_SECRET=` to `.env.example` and generate it with the command under "Existing project". `.gitignore`: `node_modules/`, `.next/`, `.env*.local`.
+table. Add `AUTH_SECRET=` to `.env.example` and run
+`openssl rand -base64 32 | eggie secret set AUTH_SECRET`. `.gitignore`: `node_modules/`, `.next/`, `.env*.local`.
 
 ## Existing project
 Use the project's `dev` script: `npm run dev -- -H 0.0.0.0 -p 3000`. Read `.env.example` for

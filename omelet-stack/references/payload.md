@@ -51,13 +51,17 @@ web:
 docker compose run --rm web npx create-payload-app@latest . --template website --db postgres --use-npm --no-git -y
 # it writes .env: move its non-secret keys into .env.example as NAME=default, then delete it
 rm .env
+# placeholder secrets there (PAYLOAD_SECRET=YOUR_SECRET_HERE, CRON_SECRET, PREVIEW_SECRET)
+# become bare NAME=; generate each into Eggie, and set NEXT_PUBLIC_SERVER_URL to the project URL
 openssl rand -hex 32 | eggie secret set PAYLOAD_SECRET
+openssl rand -hex 32 | eggie secret set CRON_SECRET
+openssl rand -hex 32 | eggie secret set PREVIEW_SECRET
 eggie up
 ```
 Then the first visit to `<URL>/admin` creates the first user; do it yourself, tell the owner
 the address, user and password in chat (never in a file) and to change the password.
 Collections (`src/collections/`) are the things the owner edits; one per kind of content.
-`PAYLOAD_SECRET=` is listed in `.env.example`; never write its value into a file.
+Each secret is a bare `NAME=` line in `.env.example`; never write its value into a file.
 `.gitignore`: `node_modules/`, `.next/`, `media/`, `.env`.
 
 ## Existing project

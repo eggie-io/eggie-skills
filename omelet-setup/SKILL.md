@@ -75,6 +75,9 @@ Every compose file, written by you or adapted from a recipe, follows this; the r
 
 - Everything runs in `docker-compose.yml`. Language tools run inside containers
   (`docker compose run --rm <service> <command>`); never install them on the VM.
+  Scaffolding and installs may use `compose run`; anything that boots the app runs as
+  `docker exec` in the running container after `eggie up`, because `compose run` gets none
+  of Eggie's variables.
 - The app listens on `0.0.0.0`, not `127.0.0.1`, or its URL never answers.
 - No host ports are published. Omelet is told which service serves the web page in
   `.omelet/project.yml`, with only a `web:` key:
