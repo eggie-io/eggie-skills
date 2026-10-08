@@ -29,7 +29,7 @@ volumes:
   data:
 ```
 
-## .omelet/project.yml
+## .eggie/project.yml
 ```yaml
 web:
   - service: app

@@ -53,7 +53,7 @@ volumes:
 ```
 `./wp-content` is the source you edit (a child theme, a plugin). Core lives in `wp_html`.
 
-## .omelet/project.yml
+## .eggie/project.yml
 ```yaml
 web:
   - service: wordpress
@@ -61,9 +61,9 @@ web:
 ```
 
 ## First run
-`omelet up` first — the URL it prints is needed below. Then, once the site answers:
+`eggie up` first — the URL it prints is needed below. Then, once the site answers:
 ```bash
-docker compose run --rm wpcli wp core install --url=<URL from omelet up> --title="<site name>" \
+docker compose run --rm wpcli wp core install --url=<URL from eggie up> --title="<site name>" \
   --admin_user=owner --admin_password=<generate one> --admin_email=owner@example.com --skip-email
 docker compose run --rm wpcli wp theme install twentytwentyfive --activate
 docker compose run --rm wpcli wp plugin install wordpress-seo --activate
@@ -85,4 +85,4 @@ tree: mount `.` to `/var/www/html` and drop the `wp_html` volume.
   can still write uploads. Files the agent creates under `wp-content` should be world-readable.
 - First page load after install can take ten seconds while caches warm; poll the URL rather
   than declaring failure.
-- The `tools` profile keeps `wpcli` out of `omelet up`; `docker compose run` still finds it.
+- The `tools` profile keeps `wpcli` out of `eggie up`; `docker compose run` still finds it.

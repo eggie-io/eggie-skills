@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SKILLS = ROOT
 
 _FRONTMATTER = re.compile(r"\A---\n(.*?)\n---\n", re.S)
-_SKILL_REF = re.compile(r"\bomelet-[a-z]+(?:-[a-z]+)*\b")
+_SKILL_REF = re.compile(r"\beggie-[a-z]+(?:-[a-z]+)*\b")
 _LOCAL_FILE = re.compile(r"`((?:references|assets)/[^`]+)`")
 
 

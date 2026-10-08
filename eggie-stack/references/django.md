@@ -38,7 +38,7 @@ volumes:
 ```
 SQLite: drop `db`; set `DATABASE_URL: sqlite:////data/db.sqlite3` with a `data:/data` volume.
 
-## .omelet/project.yml
+## .eggie/project.yml
 ```yaml
 web:
   - service: web
@@ -64,7 +64,7 @@ allowed or every request is a 400.
 
 ## Gotchas
 - `ALLOWED_HOSTS` must include the sslip host (`["*"]` in the VM is fine). A blank page with
-  "DisallowedHost" in `omelet logs` is this.
+  "DisallowedHost" in `eggie logs` is this.
 - `runserver 0.0.0.0:8000` — the address is mandatory.
 - Migrations are committed files; make them through compose
   (`docker compose run --rm web python manage.py makemigrations`) and commit them with the

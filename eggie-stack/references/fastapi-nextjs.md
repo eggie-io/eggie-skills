@@ -59,7 +59,7 @@ Outside credentials (`<PROVIDER>_API_KEY`): run
 `eggie secret request <PROVIDER>_API_KEY "where to get it"`, ask the owner to fill it on the
 Secrets page; leave it empty in .env.
 
-## .omelet/project.yml
+## .eggie/project.yml
 ```yaml
 web:
   - service: web
