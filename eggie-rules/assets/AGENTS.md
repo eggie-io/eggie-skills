@@ -9,12 +9,12 @@ apply rather than leaving it empty. Delete these comments. A page, not a manual.
 the way it is.
 
 ## Running it
-- `omelet up` starts it and prints the URL. `omelet status` shows what is running,
-  `omelet logs` shows why something is not.
+- `eggie up` starts it and prints the URL. `eggie status` shows what is running,
+  `eggie logs` shows why something is not.
 - Never `docker compose up` directly: the project gets no URL that way.
 - Language tools run inside the containers: `docker compose run --rm <service> <command>`.
   Nothing is installed on the VM.
-- `.omelet/overlay.yml` is generated; never edit it. `.omelet/project.yml` is ours.
+- `.eggie/overlay.yml` is generated; never edit it. `.eggie/project.yml` is ours.
 
 ## Layout
 <!-- Five lines at most: where pages, data models, styles and tests live. -->

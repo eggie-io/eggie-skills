@@ -1,5 +1,5 @@
 ---
-name: omelet-stack
+name: eggie-stack
 description: Use when a brief exists and no code does, when a project in ~/projects has no docker-compose.yml, or when the owner wants something added that changes what the project is made of — an editing screen, accounts, a shop, payments, answering questions from documents, a database. Use it before any framework, language or product is named, even when one seems obvious; the choice is recorded in docs/stack.md and read by every later session.
 ---
 
@@ -31,9 +31,9 @@ code. That changes the usual trade-offs:
    Then one database service with a named volume.
 6. **Reversible where cheap, recorded where not.** Keep an ORM in front of the database. Write
    down why this framework, so the next session does not reopen it.
-7. **Fits Omelet.** Everything in compose; a dev server that reloads on the mounted source;
+7. **Fits Eggie.** Everything in compose; a dev server that reloads on the mounted source;
    listens on `0.0.0.0`; no published host ports; web services declared in
-   `.omelet/project.yml`; starts in seconds.
+   `.eggie/project.yml`; starts in seconds.
 
 ## The ladder: adopt, assemble, build
 
@@ -175,5 +175,5 @@ Read the recipe for the choice and follow its compose skeleton: `references/astr
 `references/laravel.md`, `references/django.md`, `references/fastapi-nextjs.md`,
 `references/streamlit.md`, `references/payload.md`, `references/medusa.md`,
 `references/magento.md`. For any other product, start from its official docker compose file and
-adapt it to the Omelet contract in principle 7. Then hand back to **`omelet-setup`**, which
-continues with `omelet-rules`.
+adapt it to the Eggie contract in principle 7. Then hand back to **`eggie-setup`**, which
+continues with `eggie-rules`.

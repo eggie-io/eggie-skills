@@ -9,14 +9,14 @@ download keys. For anything smaller, `woocommerce.md`.
 ## Services
 Magento has no official compose file. Start from the community-standard
 `markshust/docker-magento` set (`nginx`, `phpfpm`, `db` MariaDB, `redis`, `opensearch`,
-`rabbitmq`) and adapt it to the Omelet contract:
+`rabbitmq`) and adapt it to the Eggie contract:
 
-- remove every `ports:` block — Omelet routes to `nginx` by name;
+- remove every `ports:` block — Eggie routes to `nginx` by name;
 - keep the named volumes for `db`, `opensearch` and `rabbitmq`;
 - keep `src/` bind-mounted into `phpfpm` and `nginx` so your theme and module edits show;
-- set the base URL to the one `omelet up` prints.
+- set the base URL to the one `eggie up` prints.
 
-## .omelet/project.yml
+## .eggie/project.yml
 ```yaml
 web:
   - service: nginx
@@ -30,7 +30,7 @@ web:
    without them.
 2. `composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition src`
    through the set's `bin/composer`, with the keys in `auth.json` (git-ignored).
-3. `bin/setup <URL from omelet up>` from the set; then `bin/magento admin:user:create …` and
+3. `bin/setup <URL from eggie up>` from the set; then `bin/magento admin:user:create …` and
    write the admin address and login down for the owner.
 
 ## Existing project

@@ -51,7 +51,7 @@ volumes:
 `php:8.3-cli` lacks `pdo_mysql`; add a two-line `Dockerfile` (`FROM php:8.3-cli`,
 `RUN docker-php-ext-install pdo_mysql`) and use `build: .` for `app`.
 
-## .omelet/project.yml
+## .eggie/project.yml
 ```yaml
 web:
   - service: app
@@ -67,7 +67,7 @@ docker compose run --rm app php artisan filament:install --panels --no-interacti
 docker compose run --rm app php artisan migrate
 docker compose run --rm app php artisan make:filament-user   # answers on the command line
 ```
-Set `APP_URL` in `.env` to the URL `omelet up` printed. `.gitignore` comes with Laravel.
+Set `APP_URL` in `.env` to the URL `eggie up` printed. `.gitignore` comes with Laravel.
 
 ## Existing project
 Keep the project's `composer.json` and `.env.example`; copy `.env.example` to `.env`, run

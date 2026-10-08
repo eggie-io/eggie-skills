@@ -39,7 +39,7 @@ volumes:
   db_data:
 ```
 
-## .omelet/project.yml
+## .eggie/project.yml
 ```yaml
 web:
   - service: web

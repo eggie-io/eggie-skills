@@ -1,5 +1,5 @@
 ---
-name: omelet-brainstorm
+name: eggie-brainstorm
 description: Use when the owner describes an app, a site, a tool, or a change to an existing project in plain words and no written brief or spec exists for it yet — "I want a website for my bakery", "can you add customer accounts", "I have an idea". Use it before naming any technology or writing any code, even when the idea sounds simple, because the questions it asks are what the stack choice and the plan are built from.
 ---
 
@@ -12,8 +12,8 @@ the guesses are what the owner later calls "not what I meant".
 
 This skill asks the questions whose answers decide those things, in words the owner can answer,
 and writes the result down so the next session (or the other coding agent sharing this VM) does
-not ask again. The answers are exactly what `omelet-stack` needs to choose a stack and what
-`omelet-plan` needs to plan the first slice — that is why this happens before either.
+not ask again. The answers are exactly what `eggie-stack` needs to choose a stack and what
+`eggie-plan` needs to plan the first slice — that is why this happens before either.
 
 ## Interview rules
 
@@ -104,7 +104,7 @@ Online ordering (asked, not now).
 Warm, simple, like <site the owner named>. Polish and English.
 ```
 
-Then **use `omelet-stack`**.
+Then **use `eggie-stack`**.
 
 ## Change to an existing project: write `docs/specs/<date>-<slug>.md`
 
@@ -131,7 +131,7 @@ Loyalty points, social login.
 The owner can create an account in the browser, place an order, log out, log in and see it.
 ```
 
-Then **use `omelet-plan`**.
+Then **use `eggie-plan`**.
 
 ## Common mistakes
 

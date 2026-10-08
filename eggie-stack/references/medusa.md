@@ -58,9 +58,9 @@ volumes:
   back_modules:
   db_data:
 ```
-Replace `<project-id>` with the id `omelet up` prints (the folder name, lower-case).
+Replace `<project-id>` with the id `eggie up` prints (the folder name, lower-case).
 
-## .omelet/project.yml
+## .eggie/project.yml
 ```yaml
 web:
   - service: storefront

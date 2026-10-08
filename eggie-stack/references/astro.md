@@ -22,7 +22,7 @@ volumes:
   node_modules:
 ```
 
-## .omelet/project.yml
+## .eggie/project.yml
 ```yaml
 web:
   - service: web

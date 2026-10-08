@@ -39,7 +39,7 @@ volumes:
 Drop `db`, `depends_on` and `DATABASE_URL` for SQLite; then `DATABASE_URL: file:/data/app.db`
 with a `data:/data` volume.
 
-## .omelet/project.yml
+## .eggie/project.yml
 ```yaml
 web:
   - service: web

@@ -1,5 +1,5 @@
 ---
-name: omelet-rules
+name: eggie-rules
 description: Use when a project in ~/projects has no AGENTS.md or CLAUDE.md, when an imported repository is about to be worked on for the first time, or right after the stack of a new project has been chosen — before the first line of code is written or changed in it. Also use when the owner asks to "set up rules", "document the project", or when two sessions have visibly worked differently on the same project.
 ---
 
@@ -17,9 +17,9 @@ the same file. The project's documents live next to it:
 |---|---|---|
 | `AGENTS.md` | how this project is worked on | this skill |
 | `CLAUDE.md` | `@AGENTS.md` | this skill |
-| `docs/brief.md` | what the owner asked for | `omelet-brainstorm`, or this skill when reconstructing |
-| `docs/stack.md` | what it is built with and why | `omelet-stack`, or this skill when detecting |
-| `docs/specs/`, `docs/plans/` | one file per change | `omelet-brainstorm`, `omelet-plan` |
+| `docs/brief.md` | what the owner asked for | `eggie-brainstorm`, or this skill when reconstructing |
+| `docs/stack.md` | what it is built with and why | `eggie-stack`, or this skill when detecting |
+| `docs/specs/`, `docs/plans/` | one file per change | `eggie-brainstorm`, `eggie-plan` |
 
 ## Which path
 
@@ -27,18 +27,18 @@ the same file. The project's documents live next to it:
 
 ## New project
 
-`docs/brief.md` and `docs/stack.md` exist (if not, **use `omelet-brainstorm`** and
-**`omelet-stack`** first).
+`docs/brief.md` and `docs/stack.md` exist (if not, **use `eggie-brainstorm`** and
+**`eggie-stack`** first).
 
 1. Copy `assets/AGENTS.md` to the project root and fill every section from the brief, the
-   stack record and the recipe `omelet-stack` used: the exact run, migration and admin-user
+   stack record and the recipe `eggie-stack` used: the exact run, migration and admin-user
    commands, the folder layout the scaffold produced. Remove sections that do not apply and
    every `<!-- … -->` hint.
 2. Write `CLAUDE.md` containing exactly `@AGENTS.md`.
 3. `git init` if the folder is not a repository; write `.gitignore` from the recipe; commit
    everything so far as "Project set up: <stack in three words>".
 
-Then hand back to **`omelet-setup`**, which continues with `omelet-plan`.
+Then hand back to **`eggie-setup`**, which continues with `eggie-plan`.
 
 ## Existing project
 
@@ -50,23 +50,23 @@ writing anything; the rules must describe this project, not a generic one.
    CI files), folder layout, migrations, existing `AGENTS.md`, `CLAUDE.md`, `CONTRIBUTING.md`,
    `README`.
 2. **Reconstruct `docs/brief.md`** from what the code does — the same sections
-   `omelet-brainstorm` writes — and say it back to the owner in plain words: "As far as I can
+   `eggie-brainstorm` writes — and say it back to the owner in plain words: "As far as I can
    see, this tracks orders for the shop and staff enter them by hand. Is that right, and is
    anything missing?" Write the file after the answer, marking anything the owner corrected.
-3. **`docs/stack.md`** with `Detected, not chosen.` as its first line, unless `omelet-stack`
+3. **`docs/stack.md`** with `Detected, not chosen.` as its first line, unless `eggie-stack`
    already wrote it (imports without a compose file go through that skill first).
 4. **`AGENTS.md`**:
    - none exists → the template, filled from what you found; the *Conventions* section quotes
      the project's own commands (`make test`, its migration command), not the recipe's.
    - one exists (or a `CLAUDE.md` with content) → keep it whole and append a block between
-     `<!-- omelet:begin -->` and `<!-- omelet:end -->` holding only *Running it*, *Talking to
+     `<!-- eggie:begin -->` and `<!-- eggie:end -->` holding only *Running it*, *Talking to
      the owner*, *Working on changes* and *Keeping this file current*. The markers let the
      block be replaced later without touching the owner's text. If a `CLAUDE.md` with content
      exists and no `AGENTS.md`, treat `CLAUDE.md` as the source and create `AGENTS.md` with
      `@CLAUDE.md` instead.
    - a `CONTRIBUTING.md` says how tests and migrations run → point at it from *Conventions*
      rather than copying it.
-5. Commit, if the repository is git: "Omelet: project notes and rules".
+5. Commit, if the repository is git: "Eggie: project notes and rules".
 
 ## Keep it small
 

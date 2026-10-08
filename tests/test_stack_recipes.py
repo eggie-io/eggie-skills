@@ -1,5 +1,5 @@
 """Each recipe's compose skeleton is what a coding agent copies for a new project;
-a skeleton that compose itself rejects, or that breaks the Omelet contract, turns
+a skeleton that compose itself rejects, or that breaks the Eggie contract, turns
 the first plan step of every project built from it into a failure."""
 import re
 from pathlib import Path
@@ -7,7 +7,7 @@ from pathlib import Path
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
-RECIPES = ROOT / "omelet-stack" / "references"
+RECIPES = ROOT / "eggie-stack" / "references"
 
 _COMPOSE_BLOCK = re.compile(r"## docker-compose\.yml\n```yaml\n(.*?)```", re.S)
 
@@ -25,7 +25,7 @@ def _skeletons() -> dict[str, dict]:
 def test_no_recipe_publishes_host_ports():
     for name, compose in _skeletons().items():
         for service, spec in compose["services"].items():
-            assert "ports" not in spec, f"{name}: {service} publishes ports; Omelet routes by name"
+            assert "ports" not in spec, f"{name}: {service} publishes ports; Eggie routes by name"
 
 
 def test_every_named_volume_a_service_mounts_is_declared():
