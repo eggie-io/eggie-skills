@@ -79,7 +79,10 @@ docker compose run --rm backend npx medusa db:migrate
 docker compose run --rm backend npx medusa user -e owner@example.com -p <generate one>
 ```
 Admin at `http://backend.<project-id>.127-0-0-1.sslip.io:39080/app`. Write it down for the
-owner. Payments: the Stripe provider module, keys entered in `.env`, never in code.
+owner. Payments: the Stripe provider module.
+Outside credentials (`STRIPE_API_KEY`, `STRIPE_WEBHOOK_SECRET`): run
+`eggie secret request STRIPE_API_KEY "Stripe dashboard > Developers > API keys"` (same for
+the webhook secret), ask the owner to fill them on the Secrets page; leave them empty in .env.
 `.gitignore`: `node_modules/`, `.next/`, `.medusa/`, `.env`.
 
 ## Existing project

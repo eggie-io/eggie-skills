@@ -75,6 +75,15 @@ Every compose file, written by you or adapted from a recipe, follows this; the r
 
 - Everything runs in `docker-compose.yml`. Language tools run inside containers
   (`docker compose run --rm <service> <command>`); never install them on the VM.
+  Scaffolding and installs may use `compose run`; anything that boots the app runs as
+  `docker exec` in the running container after `eggie up`, because `compose run` gets none
+  of Eggie's variables.
+- `.env` is the project's: create it from the template, edit it for settings. Outside
+  credentials (Stripe, OpenAI, mail) are Eggie secrets: `eggie secret request NAME "where to
+  get it"`, owner fills the project's Secrets page, leave it empty in `.env`; never write the
+  value to a file (if the owner insists on `.env`, do it, say once it lives in the project
+  folder). A service's literal `environment:` value beats Eggie: use `${NAME}`. Changes need
+  a restart.
 - The app listens on `0.0.0.0`, not `127.0.0.1`, or its URL never answers.
 - No host ports are published. Omelet is told which service serves the web page in
   `.omelet/project.yml`, with only a `web:` key:

@@ -51,3 +51,25 @@ def test_dev_servers_listen_on_all_interfaces():
                 command = " ".join(command)
             if "127.0.0.1" in command or "localhost" in command:
                 raise AssertionError(f"{name}: {service} binds loopback: {command}")
+
+
+_OUTSIDE_CREDENTIAL = re.compile(r"_API_KEY$|^STRIPE_|_SECRET_KEY$")
+
+
+def test_outside_credentials_are_never_compose_literals():
+    # A literal in `environment:` beats Eggie's value and ends up in the project folder.
+    checked = 0
+    for name, compose in _skeletons().items():
+        for service, spec in compose["services"].items():
+            env = spec.get("environment") or {}
+            if isinstance(env, list):
+                env = dict(item.split("=", 1) for item in env)
+            for key, value in env.items():
+                if not _OUTSIDE_CREDENTIAL.search(key):
+                    continue
+                checked += 1
+                # an empty default is fine; `${X:-sk-real}` would ship a credential
+                assert re.fullmatch(r"\$\{" + re.escape(key) + r"(:-)?\}", str(value)), (
+                    f"{name}: {service}.{key} must be ${{{key}}} or ${{{key}:-}}"
+                )
+    assert checked, "no outside-credential env keys were checked"
