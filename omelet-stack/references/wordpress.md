@@ -68,7 +68,7 @@ docker compose run --rm wpcli wp core install --url=<URL from omelet up> --title
 docker compose run --rm wpcli wp theme install twentytwentyfive --activate
 docker compose run --rm wpcli wp plugin install wordpress-seo --activate
 ```
-Write the admin address (`<URL>/wp-admin`), user and password down for the owner and tell
+Write the admin address (`<URL>/wp-admin`), user and password to the owner in chat (never in a file) and tell
 them to change the password. A child theme in `wp-content/themes/<name>/` is where your CSS
 and templates go; never edit a downloaded theme in place.
 `.gitignore`: `wp-content/uploads/`, `wp-content/upgrade/`.

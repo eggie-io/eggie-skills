@@ -75,18 +75,23 @@ why the URLs above are spelled that way.
 ```bash
 docker compose run --rm -w /app backend npx create-medusa-app@latest backend --with-nextjs-starter --db-url postgres://app:app@db:5432/app --no-browser
 # the starter lands in backend/ and backend-storefront/; move the latter to storefront/
-docker compose run --rm backend npx medusa db:migrate
-docker compose run --rm backend npx medusa user -e owner@example.com -p <generate one>
+rm backend/.env    # create-medusa-app wrote it; move its non-secret keys to the root .env.example
+openssl rand -hex 32 | eggie secret set JWT_SECRET
+openssl rand -hex 32 | eggie secret set COOKIE_SECRET
+eggie up
+# `docker compose run` gets none of Eggie's variables; use the running container (`docker ps`)
+docker exec <backend-container> npx medusa db:migrate
+docker exec <backend-container> npx medusa user -e owner@example.com -p <generate one>
 ```
-Admin at `http://backend.<project-id>.127-0-0-1.sslip.io:39080/app`. Write it down for the
-owner. Payments: the Stripe provider module. `JWT_SECRET`, `COOKIE_SECRET` and the Stripe keys are
-secrets: list each in `.env.example` (`NAME=`) and ask the owner to fill them on the
-project's **Secrets** page in Eggie; never write the value into a file.
+Admin at `http://backend.<project-id>.127-0-0-1.sslip.io:39080/app`. Tell the owner the
+address and password in chat, never in a file. Payments: the Stripe provider module; add the
+Stripe keys as `NAME=` lines in the root `.env.example` (next to `docker-compose.yml`) and ask
+the owner to fill them on the project's **Secrets** page in Eggie, then restart.
 `.gitignore`: `node_modules/`, `.next/`, `.medusa/`, `.env`.
 
 ## Existing project
 Two folders usually exist already; keep their names in `working_dir` and read each
-`.env.template`.
+`.env.template`; move its keys into the root `.env.example` (secrets as `NAME=`) and never create `.env`.
 
 ## Gotchas
 - Every CORS variable must name the exact URL the browser uses, port included; a storefront

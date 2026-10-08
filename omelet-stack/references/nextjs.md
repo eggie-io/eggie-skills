@@ -55,11 +55,13 @@ docker compose run --rm web npx prisma init --datasource-provider postgresql
 docker compose run --rm web npx prisma migrate dev --name init
 ```
 Accounts: `npm install next-auth@beta` (Auth.js) — never a hand-written session or password
-table. `.gitignore`: `node_modules/`, `.next/`, `.env*.local`.
+table. Add `AUTH_SECRET=` to `.env.example` and generate it with the command under "Existing project". `.gitignore`: `node_modules/`, `.next/`, `.env*.local`.
 
 ## Existing project
 Use the project's `dev` script: `npm run dev -- -H 0.0.0.0 -p 3000`. Read `.env.example` for
-the variables it expects and put them in compose `environment`.
+the variables it expects. Secrets go in `.env.example` as `NAME=` and their values never go
+into compose; never create `.env`. Auth.js `AUTH_SECRET` is generated into Eggie:
+`openssl rand -base64 32 | eggie secret set AUTH_SECRET`.
 
 ## Gotchas
 - The page is opened through `http://<id>.127-0-0-1.sslip.io:39080`, not `localhost`. Next's

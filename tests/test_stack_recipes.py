@@ -51,3 +51,26 @@ def test_dev_servers_listen_on_all_interfaces():
                 command = " ".join(command)
             if "127.0.0.1" in command or "localhost" in command:
                 raise AssertionError(f"{name}: {service} binds loopback: {command}")
+
+
+# Local dev database credentials that live in compose as literals on purpose
+# (a service's own literal wins over Eggie's value); everything else must be ${...}.
+_LOCAL_DEV_LITERALS = {
+    "DB_PASSWORD", "POSTGRES_PASSWORD", "MYSQL_PASSWORD", "MYSQL_ROOT_PASSWORD",
+    "WORDPRESS_DB_PASSWORD",
+}
+_SECRETISH = re.compile(r"SECRET|_KEY$|PASSWORD")
+
+
+def test_secret_looking_env_vars_reference_eggie_instead_of_a_literal():
+    for name, compose in _skeletons().items():
+        for service, spec in compose["services"].items():
+            env = spec.get("environment") or {}
+            if isinstance(env, list):
+                env = dict(item.split("=", 1) for item in env)
+            for key, value in env.items():
+                if not _SECRETISH.search(key) or key in _LOCAL_DEV_LITERALS:
+                    continue
+                assert str(value).startswith("${"), (
+                    f"{name}: {service}.{key} is a literal; use ${{{key}}} and list it in .env.example"
+                )

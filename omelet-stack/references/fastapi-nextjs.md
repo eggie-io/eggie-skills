@@ -33,8 +33,7 @@ services:
       DATABASE_URL: postgresql+psycopg://app:app@db:5432/app
       # the model provider's key under the name its library reads, e.g. ANTHROPIC_API_KEY
       # or OPENAI_API_KEY; which provider is a decision recorded in docs/stack.md
-      <PROVIDER>_API_KEY: ${<PROVIDER>_API_KEY:-}
-      # also add <PROVIDER>_API_KEY= to .env.example so Eggie shows the key as missing
+      <PROVIDER>_API_KEY: ${<PROVIDER>_API_KEY}
     volumes:
       - .:/app
       - pip_cache:/root/.cache/pip
@@ -75,14 +74,15 @@ docker compose run --rm -w /app/web web npx create-next-app@latest . --typescrip
 printf 'fastapi\nuvicorn[standard]\npython-multipart\nsqlalchemy\npsycopg[binary]\npgvector\npypdf\n' > api/requirements.txt
 ```
 Write `api/app/main.py` with a `/health` route first and check it through the rewrite
-(`curl <URL>/api/health`) before any feature. Model keys come from the owner: list the name in
-`.env.example` (`NAME=`) and ask them to fill it on the project's **Secrets** page in Eggie;
+(`curl <URL>/api/health`) before any feature. Model keys come from the owner: add `<PROVIDER>_API_KEY=` to the root
+`.env.example` (next to `docker-compose.yml`) and ask them to fill it on the project's **Secrets** page in Eggie;
 never write the value into a file. `.gitignore`: `node_modules/`,
 `.next/`, `__pycache__/`, `.env`.
 
 ## Existing project
 Two folders with their own manifests usually already exist; keep their names and adjust
-`working_dir`. Read the API's `.env.example` for the variables it expects.
+`working_dir`. Read the API's `.env.example` for the variables it expects; move them into the root
+`.env.example` and never create `.env`.
 
 ## Gotchas
 - `--reload` in uvicorn watches the mounted source; it does not watch `requirements.txt` —

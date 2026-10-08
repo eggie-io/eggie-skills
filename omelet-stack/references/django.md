@@ -49,16 +49,20 @@ web:
 ```bash
 printf 'Django>=5.1,<6\ndj-database-url\npsycopg[binary]\ndjango-allauth\n' > requirements.txt
 docker compose run --rm web sh -c "pip install -r requirements.txt && django-admin startproject config ."
-# in config/settings.py: ALLOWED_HOSTS = ["*"] (dev only), DATABASES from dj_database_url
-docker compose run --rm web python manage.py migrate
-docker compose run --rm -e DJANGO_SUPERUSER_PASSWORD=<generate one> web \
+# in config/settings.py: ALLOWED_HOSTS = ["*"] (dev only), DATABASES from dj_database_url,
+# SECRET_KEY = os.environ["SECRET_KEY"]
+openssl rand -hex 32 | eggie secret set SECRET_KEY    # and list SECRET_KEY= in .env.example
+eggie up
+# `docker compose run` gets none of Eggie's variables; use the running container (`docker ps`)
+docker exec <web-container> python manage.py migrate
+docker exec -e DJANGO_SUPERUSER_PASSWORD=<generate one> <web-container> \
   python manage.py createsuperuser --noinput --username owner --email owner@example.com
 ```
-Write the admin address (`<URL>/admin/`), user and password down for the owner.
+Tell the owner the admin address (`<URL>/admin/`), user and password in chat; never write them into a file.
 `.gitignore`: `__pycache__/`, `*.sqlite3`, `.env`, `media/`.
 
 ## Existing project
-Keep `requirements.txt` (or install from `pyproject.toml` with `pip install -e .`). Read
+Keep `requirements.txt` (or install from `pyproject.toml` with `pip install -e .`). Never create `.env`; read
 `settings.py` for the database it expects and the `ALLOWED_HOSTS`; the sslip host must be
 allowed or every request is a 400.
 

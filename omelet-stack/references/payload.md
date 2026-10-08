@@ -49,17 +49,20 @@ web:
 ## First run
 ```bash
 docker compose run --rm web npx create-payload-app@latest . --template website --db postgres --use-npm --no-git -y
+# it writes .env: move its non-secret keys into .env.example as NAME=default, then delete it
+rm .env
+openssl rand -hex 32 | eggie secret set PAYLOAD_SECRET
+eggie up
 ```
-The first visit to `<URL>/admin` creates the first user; do it yourself, write the address,
-user and password down for the owner and tell them to change the password. Collections
-(`src/collections/`) are the things the owner edits; one per kind of content.
-`PAYLOAD_SECRET` is a secret: list `PAYLOAD_SECRET=` in `.env.example` and ask the owner to set
-it on the project's **Secrets** page in Eggie; never write the value into a file.
+Then the first visit to `<URL>/admin` creates the first user; do it yourself, tell the owner
+the address, user and password in chat (never in a file) and to change the password.
+Collections (`src/collections/`) are the things the owner edits; one per kind of content.
+`PAYLOAD_SECRET=` is listed in `.env.example`; never write its value into a file.
 `.gitignore`: `node_modules/`, `.next/`, `media/`, `.env`.
 
 ## Existing project
-Use the project's `dev` script with `-H 0.0.0.0`; read `.env.example` for `DATABASE_URI`
-and `PAYLOAD_SECRET`.
+Use the project's `dev` script with `-H 0.0.0.0`; read `.env.example` for the
+variables it expects; never create `.env`, generate `PAYLOAD_SECRET` as above.
 
 ## Gotchas
 - Same live-reload origin rule as `nextjs.md`: `allowedDevOrigins: ["*.127-0-0-1.sslip.io"]`.
