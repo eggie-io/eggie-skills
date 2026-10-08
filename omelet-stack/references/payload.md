@@ -18,7 +18,7 @@ services:
     command: sh -c "npm install && npx next dev -H 0.0.0.0 -p 3000"
     environment:
       DATABASE_URI: postgresql://app:app@db:5432/app
-      PAYLOAD_SECRET: change-me-in-env
+      PAYLOAD_SECRET: ${PAYLOAD_SECRET}
     volumes:
       - .:/app
       - node_modules:/app/node_modules
@@ -53,6 +53,8 @@ docker compose run --rm web npx create-payload-app@latest . --template website -
 The first visit to `<URL>/admin` creates the first user; do it yourself, write the address,
 user and password down for the owner and tell them to change the password. Collections
 (`src/collections/`) are the things the owner edits; one per kind of content.
+`PAYLOAD_SECRET` is a secret: list `PAYLOAD_SECRET=` in `.env.example` and ask the owner to set
+it on the project's **Secrets** page in Eggie; never write the value into a file.
 `.gitignore`: `node_modules/`, `.next/`, `media/`, `.env`.
 
 ## Existing project

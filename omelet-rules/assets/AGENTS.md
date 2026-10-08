@@ -49,7 +49,8 @@ lines beat a paragraph. Never restate what the code says.
 ## Git
 Commit after each working step, with a message that says what changed for the owner
 ("Menu page shows photos", not "update templates"). Never commit `.env`, uploads or
-generated folders.
+generated folders, and never write a secret value into any file; secrets live on the
+project's Secrets page in Eggie.
 
 ## Working on changes
 Size it first. Small (fits in one sentence, a few files): confirm in one message, do it,

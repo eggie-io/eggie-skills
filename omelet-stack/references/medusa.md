@@ -35,8 +35,8 @@ services:
       STORE_CORS: http://<project-id>.127-0-0-1.sslip.io:39080
       ADMIN_CORS: http://backend.<project-id>.127-0-0-1.sslip.io:39080
       AUTH_CORS: http://<project-id>.127-0-0-1.sslip.io:39080,http://backend.<project-id>.127-0-0-1.sslip.io:39080
-      JWT_SECRET: change-me
-      COOKIE_SECRET: change-me
+      JWT_SECRET: ${JWT_SECRET}
+      COOKIE_SECRET: ${COOKIE_SECRET}
     volumes:
       - .:/app
       - back_modules:/app/backend/node_modules
@@ -79,7 +79,9 @@ docker compose run --rm backend npx medusa db:migrate
 docker compose run --rm backend npx medusa user -e owner@example.com -p <generate one>
 ```
 Admin at `http://backend.<project-id>.127-0-0-1.sslip.io:39080/app`. Write it down for the
-owner. Payments: the Stripe provider module, keys entered in `.env`, never in code.
+owner. Payments: the Stripe provider module. `JWT_SECRET`, `COOKIE_SECRET` and the Stripe keys are
+secrets: list each in `.env.example` (`NAME=`) and ask the owner to fill them on the
+project's **Secrets** page in Eggie; never write the value into a file.
 `.gitignore`: `node_modules/`, `.next/`, `.medusa/`, `.env`.
 
 ## Existing project

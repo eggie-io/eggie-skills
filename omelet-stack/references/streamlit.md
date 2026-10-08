@@ -20,6 +20,7 @@ services:
       # the model provider's key under the name its library reads, e.g. ANTHROPIC_API_KEY
       # or OPENAI_API_KEY; which provider is a decision recorded in docs/stack.md
       <PROVIDER>_API_KEY: ${<PROVIDER>_API_KEY:-}
+      # also add <PROVIDER>_API_KEY= to .env.example so Eggie shows the key as missing
     volumes:
       - .:/app
       - pip_cache:/root/.cache/pip
