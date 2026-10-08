@@ -35,8 +35,8 @@ services:
       STORE_CORS: http://<project-id>.127-0-0-1.sslip.io:39080
       ADMIN_CORS: http://backend.<project-id>.127-0-0-1.sslip.io:39080
       AUTH_CORS: http://<project-id>.127-0-0-1.sslip.io:39080,http://backend.<project-id>.127-0-0-1.sslip.io:39080
-      JWT_SECRET: ${JWT_SECRET}
-      COOKIE_SECRET: ${COOKIE_SECRET}
+      JWT_SECRET: change-me
+      COOKIE_SECRET: change-me
     volumes:
       - .:/app
       - back_modules:/app/backend/node_modules
@@ -75,28 +75,20 @@ why the URLs above are spelled that way.
 ```bash
 docker compose run --rm -w /app backend npx create-medusa-app@latest backend --with-nextjs-starter --db-url postgres://app:app@db:5432/app --no-browser
 # the starter lands in backend/ and backend-storefront/; move the latter to storefront/
-rm backend/.env    # create-medusa-app wrote it; move its non-secret keys to the root .env.example
-openssl rand -hex 32 | eggie secret set JWT_SECRET
-openssl rand -hex 32 | eggie secret set COOKIE_SECRET
-eggie up    # wait until the DB answers before migrating
-# `docker compose run` gets none of Eggie's variables; use the running container (`docker ps`)
-docker exec <backend-container> npx medusa db:migrate
-docker exec <backend-container> npx medusa user -e owner@example.com -p <generate one>
+docker compose run --rm backend npx medusa db:migrate
+docker compose run --rm backend npx medusa user -e owner@example.com -p <generate one>
 ```
-Admin at `http://backend.<project-id>.127-0-0-1.sslip.io:39080/app`. Tell the owner the
-address and password in chat, never in a file. Payments: the Stripe provider module; add the
-Stripe keys as `NAME=` lines in the root `.env.example` (next to `docker-compose.yml`) and ask
-the owner to fill them on the project's **Secrets** page in Eggie, then restart.
+Admin at `http://backend.<project-id>.127-0-0-1.sslip.io:39080/app`. Write it down for the
+owner. Payments: the Stripe provider module, keys entered in `.env`, never in code.
 `.gitignore`: `node_modules/`, `.next/`, `.medusa/`, `.env`.
 
 ## Existing project
 Two folders usually exist already; keep their names in `working_dir` and read each
-`.env.template`; move its keys into the root `.env.example` (secrets as `NAME=`) and never create `.env`.
+`.env.template`.
 
 ## Gotchas
 - Every CORS variable must name the exact URL the browser uses, port included; a storefront
   that loads but shows no products is CORS.
 - Medusa's dev server takes a minute to start the first time; poll the backend's `/health`.
 - Publishable API key: the storefront needs one from the admin (Settings → Publishable API
-  keys) in `NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY`. It is publishable, not secret: it can be a
-  default in the root `.env.example` (from `storefront/.env.local`).
+  keys) in `NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY`.

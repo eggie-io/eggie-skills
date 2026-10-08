@@ -18,7 +18,7 @@ services:
     command: sh -c "npm install && npx next dev -H 0.0.0.0 -p 3000"
     environment:
       DATABASE_URI: postgresql://app:app@db:5432/app
-      PAYLOAD_SECRET: ${PAYLOAD_SECRET}
+      PAYLOAD_SECRET: change-me-in-env
     volumes:
       - .:/app
       - node_modules:/app/node_modules
@@ -49,24 +49,15 @@ web:
 ## First run
 ```bash
 docker compose run --rm web npx create-payload-app@latest . --template website --db postgres --use-npm --no-git -y
-# it writes .env: move its non-secret keys into .env.example as NAME=default, then delete it
-rm .env
-# placeholder secrets there (PAYLOAD_SECRET=YOUR_SECRET_HERE, CRON_SECRET, PREVIEW_SECRET)
-# become bare NAME=; generate each into Eggie, and set NEXT_PUBLIC_SERVER_URL to the project URL
-openssl rand -hex 32 | eggie secret set PAYLOAD_SECRET
-openssl rand -hex 32 | eggie secret set CRON_SECRET
-openssl rand -hex 32 | eggie secret set PREVIEW_SECRET
-eggie up
 ```
-Then the first visit to `<URL>/admin` creates the first user; do it yourself, tell the owner
-the address, user and password in chat (never in a file) and to change the password.
-Collections (`src/collections/`) are the things the owner edits; one per kind of content.
-Each secret is a bare `NAME=` line in `.env.example`; never write its value into a file.
+The first visit to `<URL>/admin` creates the first user; do it yourself, write the address,
+user and password down for the owner and tell them to change the password. Collections
+(`src/collections/`) are the things the owner edits; one per kind of content.
 `.gitignore`: `node_modules/`, `.next/`, `media/`, `.env`.
 
 ## Existing project
-Use the project's `dev` script with `-H 0.0.0.0`; read `.env.example` for the
-variables it expects; never create `.env`, generate `PAYLOAD_SECRET` as above.
+Use the project's `dev` script with `-H 0.0.0.0`; read `.env.example` for `DATABASE_URI`
+and `PAYLOAD_SECRET`.
 
 ## Gotchas
 - Same live-reload origin rule as `nextjs.md`: `allowedDevOrigins: ["*.127-0-0-1.sslip.io"]`.

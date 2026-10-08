@@ -62,27 +62,16 @@ web:
 ```bash
 # composer is not a service in the compose file: plain `docker run` with the project mounted
 docker run --rm -v "$PWD":/app -w /app composer:2 create-project laravel/laravel .
-rm .env    # create-project wrote it; Eggie delivers the settings instead
-echo "base64:$(openssl rand -base64 32)" | eggie secret set APP_KEY
 docker run --rm -v "$PWD":/app -w /app composer:2 require filament/filament:"^3.0"
-eggie up    # wait until the DB answers before migrating
-# `docker compose run` gets none of Eggie's variables; run artisan in the running container
-docker exec <app-container> php artisan filament:install --panels --no-interaction
-docker exec <app-container> php artisan migrate
-docker exec <app-container> php artisan make:filament-user   # answers on the command line
+docker compose run --rm app php artisan filament:install --panels --no-interaction
+docker compose run --rm app php artisan migrate
+docker compose run --rm app php artisan make:filament-user   # answers on the command line
 ```
-Find `<app-container>` with `docker ps`. Laravel's stock `.env.example` works as-is: delete the empty keys the app doesn't use (e.g. `AWS_*`) so the owner isn't
-asked for them, and set
-`APP_URL=` there to the URL `omelet up` printed. Non-secret settings are `NAME=default`
-lines in `.env.example`; mail passwords and API keys are `NAME=` lines the owner fills on
-the project's **Secrets** page in Eggie. The DB credentials stay literals in compose.
-`.gitignore` comes with Laravel.
+Set `APP_URL` in `.env` to the URL `omelet up` printed. `.gitignore` comes with Laravel.
 
 ## Existing project
-Keep the project's `composer.json` and `.env.example`; never create `.env`. Run
-`docker run --rm -v "$PWD":/app -w /app composer:2 install`, generate `APP_KEY` into Eggie
-with the `echo "base64:..." | eggie secret set APP_KEY` line above, `eggie up`, then
-`docker exec <app-container> php artisan migrate`.
+Keep the project's `composer.json` and `.env.example`; copy `.env.example` to `.env`, run
+`docker run --rm -v "$PWD":/app -w /app composer:2 install`, `php artisan key:generate`, `migrate`.
 
 ## Gotchas
 - `artisan serve` is a dev server; that is what we want here. Do not add nginx + php-fpm

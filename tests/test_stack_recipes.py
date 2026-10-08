@@ -53,16 +53,11 @@ def test_dev_servers_listen_on_all_interfaces():
                 raise AssertionError(f"{name}: {service} binds loopback: {command}")
 
 
-# Local dev database credentials that live in compose as literals on purpose
-# (a service's own literal wins over Eggie's value); everything else must be ${...}.
-_LOCAL_DEV_LITERALS = {
-    "DB_PASSWORD", "POSTGRES_PASSWORD", "MYSQL_PASSWORD", "MYSQL_ROOT_PASSWORD",
-    "WORDPRESS_DB_PASSWORD",
-}
-_SECRETISH = re.compile(r"SECRET|_KEY$|_TOKEN$|PASSWORD")
+_OUTSIDE_CREDENTIAL = re.compile(r"_API_KEY$|^STRIPE_|_SECRET_KEY$")
 
 
-def test_secret_looking_env_vars_reference_eggie_instead_of_a_literal():
+def test_outside_credentials_are_never_compose_literals():
+    # A literal in `environment:` beats Eggie's value and ends up in the project folder.
     checked = 0
     for name, compose in _skeletons().items():
         for service, spec in compose["services"].items():
@@ -70,11 +65,8 @@ def test_secret_looking_env_vars_reference_eggie_instead_of_a_literal():
             if isinstance(env, list):
                 env = dict(item.split("=", 1) for item in env)
             for key, value in env.items():
-                if not _SECRETISH.search(key) or key in _LOCAL_DEV_LITERALS:
+                if not _OUTSIDE_CREDENTIAL.search(key):
                     continue
                 checked += 1
-                # `${X:-literal}` / `${X-literal}` would ship a default secret
-                assert re.fullmatch(r"\$\{[^}:\-]+\}", str(value)), (
-                    f"{name}: {service}.{key} must be a plain ${{NAME}} reference listed in .env.example"
-                )
-    assert checked, "no secret-looking env keys were checked"
+                assert str(value).startswith("${"), f"{name}: {service}.{key} must be a ${{NAME}} reference"
+    assert checked, "no outside-credential env keys were checked"

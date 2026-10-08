@@ -33,7 +33,7 @@ services:
       DATABASE_URL: postgresql+psycopg://app:app@db:5432/app
       # the model provider's key under the name its library reads, e.g. ANTHROPIC_API_KEY
       # or OPENAI_API_KEY; which provider is a decision recorded in docs/stack.md
-      <PROVIDER>_API_KEY: ${<PROVIDER>_API_KEY}
+      <PROVIDER>_API_KEY: ${<PROVIDER>_API_KEY:-}
     volumes:
       - .:/app
       - pip_cache:/root/.cache/pip
@@ -55,6 +55,8 @@ volumes:
   db_data:
 ```
 Layout: `web/` (Next.js) and `api/` (FastAPI) side by side in the project folder.
+Outside credentials (`<PROVIDER>_API_KEY`): run `eggie secret request <PROVIDER>_API_KEY "where to get it"` and ask the
+owner to fill it on the Secrets page; leave it empty in .env.
 
 ## .omelet/project.yml
 ```yaml
@@ -74,15 +76,13 @@ docker compose run --rm -w /app/web web npx create-next-app@latest . --typescrip
 printf 'fastapi\nuvicorn[standard]\npython-multipart\nsqlalchemy\npsycopg[binary]\npgvector\npypdf\n' > api/requirements.txt
 ```
 Write `api/app/main.py` with a `/health` route first and check it through the rewrite
-(`curl <URL>/api/health`) before any feature. Model keys come from the owner: add `<PROVIDER>_API_KEY=` to the root
-`.env.example` (next to `docker-compose.yml`) and ask them to fill it on the project's **Secrets** page in Eggie;
-never write the value into a file. `.gitignore`: `node_modules/`,
+(`curl <URL>/api/health`) before any feature. Model keys come from the owner and go into a
+`.env` file next to the compose file, never into code. `.gitignore`: `node_modules/`,
 `.next/`, `__pycache__/`, `.env`.
 
 ## Existing project
 Two folders with their own manifests usually already exist; keep their names and adjust
-`working_dir`. Read the API's `.env.example` for the variables it expects; move them into the root
-`.env.example` and never create `.env`.
+`working_dir`. Read the API's `.env.example` for the variables it expects.
 
 ## Gotchas
 - `--reload` in uvicorn watches the mounted source; it does not watch `requirements.txt` —

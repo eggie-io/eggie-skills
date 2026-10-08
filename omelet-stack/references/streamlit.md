@@ -19,7 +19,7 @@ services:
     environment:
       # the model provider's key under the name its library reads, e.g. ANTHROPIC_API_KEY
       # or OPENAI_API_KEY; which provider is a decision recorded in docs/stack.md
-      <PROVIDER>_API_KEY: ${<PROVIDER>_API_KEY}
+      <PROVIDER>_API_KEY: ${<PROVIDER>_API_KEY:-}
     volumes:
       - .:/app
       - pip_cache:/root/.cache/pip
@@ -41,9 +41,9 @@ web:
 printf 'streamlit\npandas\n' > requirements.txt
 printf 'import streamlit as st\nst.title("Hello")\n' > app.py
 ```
-Add `<PROVIDER>_API_KEY=` to the root `.env.example` and ask the owner to fill it on the
-project's **Secrets** page in Eggie. Read keys with `os.environ`, not `st.secrets`.
 `.gitignore`: `__pycache__/`, `.env`, `.streamlit/secrets.toml`.
+Outside credentials (`<PROVIDER>_API_KEY`): run `eggie secret request <PROVIDER>_API_KEY "where to get it"` and ask the
+owner to fill it on the Secrets page; leave it empty in .env.
 
 ## Existing project
 Use the project's own entry file in place of `app.py`; keep its `requirements.txt`.

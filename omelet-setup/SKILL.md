@@ -78,6 +78,13 @@ Every compose file, written by you or adapted from a recipe, follows this; the r
   Scaffolding and installs may use `compose run`; anything that boots the app runs as
   `docker exec` in the running container after `eggie up`, because `compose run` gets none
   of Eggie's variables.
+- `.env` belongs to the project: create it from the template, edit it for settings, let
+  framework commands write their own keys. Outside credentials (Stripe, OpenAI, mail) are Eggie
+  secrets: tell the owner where to get it, run `eggie secret request NAME "where to get it"`,
+  ask them to fill it on the project's Secrets page, leave it empty in `.env`. Never write a
+  secret value into a file or commit. Eggie's value wins over `.env`, but a service that
+  hard-codes the name in its own `environment:` beats Eggie: use `${NAME}`. A change needs a
+  restart; cached config and build-time variables don't see it.
 - The app listens on `0.0.0.0`, not `127.0.0.1`, or its URL never answers.
 - No host ports are published. Omelet is told which service serves the web page in
   `.omelet/project.yml`, with only a `web:` key:
