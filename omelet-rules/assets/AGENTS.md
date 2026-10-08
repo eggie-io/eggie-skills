@@ -53,7 +53,8 @@ generated folders.
 `.env` is the project's: create it from the template, edit it for settings, let framework
 commands write their own keys. Outside credentials (Stripe, OpenAI, mail) are Eggie secrets:
 `eggie secret request NAME "where to get it"`, ask the owner to fill it on the project's Secrets
-page, leave it empty in `.env`. Never write a secret value into a file or commit; Eggie's value
+page, leave it empty in `.env`. Never write a secret value into a file or commit (if the owner insists on `.env`, do it and
+say once that it then lives in the project folder); Eggie's value
 wins over `.env`, a change needs a restart, and `docker exec` (not `compose run`) sees it.
 
 ## Working on changes

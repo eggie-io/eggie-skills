@@ -55,8 +55,9 @@ volumes:
   db_data:
 ```
 Layout: `web/` (Next.js) and `api/` (FastAPI) side by side in the project folder.
-Outside credentials (`<PROVIDER>_API_KEY`): run `eggie secret request <PROVIDER>_API_KEY "where to get it"` and ask the
-owner to fill it on the Secrets page; leave it empty in .env.
+Outside credentials (`<PROVIDER>_API_KEY`): run
+`eggie secret request <PROVIDER>_API_KEY "where to get it"`, ask the owner to fill it on the
+Secrets page; leave it empty in .env.
 
 ## .omelet/project.yml
 ```yaml
@@ -76,8 +77,8 @@ docker compose run --rm -w /app/web web npx create-next-app@latest . --typescrip
 printf 'fastapi\nuvicorn[standard]\npython-multipart\nsqlalchemy\npsycopg[binary]\npgvector\npypdf\n' > api/requirements.txt
 ```
 Write `api/app/main.py` with a `/health` route first and check it through the rewrite
-(`curl <URL>/api/health`) before any feature. Model keys come from the owner and go into a
-`.env` file next to the compose file, never into code. `.gitignore`: `node_modules/`,
+(`curl <URL>/api/health`) before any feature. The model key is requested with
+`eggie secret request`, never written into code or compose. `.gitignore`: `node_modules/`,
 `.next/`, `__pycache__/`, `.env`.
 
 ## Existing project

@@ -68,5 +68,8 @@ def test_outside_credentials_are_never_compose_literals():
                 if not _OUTSIDE_CREDENTIAL.search(key):
                     continue
                 checked += 1
-                assert str(value).startswith("${"), f"{name}: {service}.{key} must be a ${{NAME}} reference"
+                # an empty default is fine; `${X:-sk-real}` would ship a credential
+                assert re.fullmatch(r"\$\{" + re.escape(key) + r"(:-)?\}", str(value)), (
+                    f"{name}: {service}.{key} must be ${{{key}}} or ${{{key}:-}}"
+                )
     assert checked, "no outside-credential env keys were checked"

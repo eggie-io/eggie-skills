@@ -42,8 +42,9 @@ printf 'streamlit\npandas\n' > requirements.txt
 printf 'import streamlit as st\nst.title("Hello")\n' > app.py
 ```
 `.gitignore`: `__pycache__/`, `.env`, `.streamlit/secrets.toml`.
-Outside credentials (`<PROVIDER>_API_KEY`): run `eggie secret request <PROVIDER>_API_KEY "where to get it"` and ask the
-owner to fill it on the Secrets page; leave it empty in .env.
+Outside credentials (`<PROVIDER>_API_KEY`): run
+`eggie secret request <PROVIDER>_API_KEY "where to get it"`, ask the owner to fill it on the
+Secrets page; leave it empty in .env.
 
 ## Existing project
 Use the project's own entry file in place of `app.py`; keep its `requirements.txt`.

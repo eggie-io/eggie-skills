@@ -59,7 +59,8 @@ table. `.gitignore`: `node_modules/`, `.next/`, `.env*.local`.
 
 ## Existing project
 Use the project's `dev` script: `npm run dev -- -H 0.0.0.0 -p 3000`. Read `.env.example` for
-the variables it expects and put them in compose `environment`.
+the variables it expects: settings go in `.env`, outside credentials via
+`eggie secret request`.
 
 ## Gotchas
 - The page is opened through `http://<id>.127-0-0-1.sslip.io:39080`, not `localhost`. Next's
