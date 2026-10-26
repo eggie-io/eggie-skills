@@ -26,7 +26,7 @@ not ask again. The answers are exactly what `eggie-stack` needs to choose a stac
 - **Scale to the request.** The list below is a ceiling, not a script. A description that
   already answers everything gets one message that reflects it back and asks "did I get this
   right?". A page with opening hours does not get ten questions.
-- **No technology words.** Ask about people, content, money, memory and outside things. The
+- **No technology words** (below `developer`). Ask about people, content, money, memory and outside things. The
   owner cannot answer a question they do not understand, and a wrong guess at "yes" costs a
   rebuild.
 
