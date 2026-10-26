@@ -103,8 +103,23 @@ Match the brief to a row. Candidates are product first; the condition says when 
 - Documents or data processed → Python for that part, keeping the row's frontend.
 
 **Anti-patterns**: microservices; more than two languages; hand-rolled auth or admin; a
-framework chosen because it is new; anything justified by "we might need it later"; asking the
-owner to choose between technologies.
+framework chosen because it is new; anything justified by "we might need it later"; asking an
+owner below `developer` to choose between technologies.
+
+## When the owner is a developer
+
+`Level: developer` in `~/.eggie/owner.md` changes who decides, not the principles:
+
+- The brief's *Stack wishes* or their message names a stack → it wins, even one the ladder
+  would not pick. Say once, in a sentence, what it costs against the ladder's pick, then build
+  it; do not argue again. The overrides and the rationalizations below guard your own pick, not
+  theirs; inside their stack, still buy the commodity parts (libraries over custom code).
+- Nothing named → ask once whether they have a stack in mind, offering the ladder's pick.
+  "Your call" → walk the ladder as usual.
+- In `docs/stack.md`, *Ladder step* reads `Owner's choice: <stack>.` and *Rejected* holds the
+  ladder's pick with that sentence.
+
+Below `developer`, *Stack wishes* is a need like any other, weighed on the ladder.
 
 ## Rationalizations that end in a rebuild
 

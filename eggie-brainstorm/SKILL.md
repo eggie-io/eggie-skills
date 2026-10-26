@@ -5,10 +5,11 @@ description: Use when the owner describes an app, a site, a tool, or a change to
 
 # Turning an idea into a brief
 
-The owner is not technical. They describe an outcome, not a system, and they leave out
-everything they consider obvious: who will log in, who will change the text next month, what
-the first useful version is. Code written from a one-sentence idea guesses at all of that, and
-the guesses are what the owner later calls "not what I meant".
+The owner is not technical unless `~/.eggie/owner.md` says `Level: developer`. They describe
+an outcome, not a system, and they leave out everything they consider obvious: who will log
+in, who will change the text next month, what the first useful version is. Code written from
+a one-sentence idea guesses at all of that, and the guesses are what the owner later calls
+"not what I meant".
 
 This skill asks the questions whose answers decide those things, in words the owner can answer,
 and writes the result down so the next session (or the other coding agent sharing this VM) does
@@ -42,6 +43,9 @@ not ask again. The answers are exactly what `eggie-stack` needs to choose a stac
   usually three or four rows. Everything with a sensible default (language, look, where it
   lives for now) goes into the reflect-back as a stated assumption the owner can correct in
   one word. Nine questions in a row is an interrogation, and the owner stops reading them.
+- **A `developer` owner** may hear and use technology words, and the questions stay about
+  outcomes. Do not ask about the stack here — `eggie-stack` does. A technology they name goes
+  into *Stack wishes*.
 - **Reflect back, then write.** End with the brief in plain words and ask whether it is right.
   Write the file only after a yes. A brief the owner has not confirmed is still a guess.
 
@@ -102,6 +106,9 @@ Online ordering (asked, not now).
 
 ## Look and feel
 Warm, simple, like <site the owner named>. Polish and English.
+
+## Stack wishes
+None.
 ```
 
 Then **use `eggie-stack`**.
@@ -136,8 +143,8 @@ Then **use `eggie-plan`**.
 ## Common mistakes
 
 - Asking two things in one message. The owner answers the second one.
-- Asking about databases, frameworks or hosting providers. Ask what it should remember and
-  where it will live.
+- Asking a non-developer about databases, frameworks or hosting providers. Ask what it should
+  remember and where it will live.
 - Writing the brief before the owner has said the summary is right.
 - Running the whole list for a landing page. Reflect back, confirm, move on.
 - Treating "later" items as part of the first slice. They go in *Later* and stay there.
