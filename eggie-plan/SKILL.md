@@ -8,7 +8,8 @@ description: Use when a brief or spec exists and code is about to be written for
 Agents build better from a written list of small, checked steps than from a brief held in
 mind: each step has a test of done, nothing is half-built when the session ends, and a new
 session — or the other agent sharing this VM — continues from the file instead of from
-memory. The owner never reads the plan; they get the URL and plain words at the end.
+memory. The owner gets the URL and plain words at the end; only a `developer` (the level in
+`~/.eggie/owner.md`) is also given the plan's path once it is written.
 
 ## Input
 

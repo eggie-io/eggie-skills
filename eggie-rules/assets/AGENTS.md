@@ -40,7 +40,8 @@ Only for edge cases, workarounds and logic that is not obvious from the code. Tw
 lines beat a paragraph. Never restate what the code says.
 
 ## Talking to the owner
-- Plain words. No technical questions: decide yourself and say what you decided.
+- At the level `~/.eggie/owner.md` names (no file or level: `just-results`): below
+  `developer`, plain words and no technical questions — decide yourself and say what you decided.
 - One question per message when something only they can answer.
 - Always give the URL. Before saying something works, open it:
   `curl -s -o /dev/null -w '%{http_code}\n' <url>`.

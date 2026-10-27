@@ -6,8 +6,10 @@ description: Use when the owner wants a project set up, imported, cloned or runn
 # Setting up a project with Eggie
 
 Projects live in `~/projects/<name>/`, one folder each. Eggie runs them in Docker and gives
-each one a URL. The owner is not technical: decide everything yourself, in the open, and never
-ask them about technology. What you do ask, you ask one question at a time.
+each one a URL. Work with the owner at the level `~/.eggie/owner.md` names: below `developer`,
+decide everything yourself, in the open, and never ask them about technology. What you do ask,
+you ask one question at a time. No `~/.eggie/owner.md` yet → ask the level question from your
+Eggie instructions and write the file first.
 
 ## 1. Get the project into ~/projects
 
