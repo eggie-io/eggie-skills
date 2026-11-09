@@ -19,3 +19,8 @@ to install.
 - **eggie-stack** — chooses adopt, assemble or build, and records `docs/stack.md`.
 - **eggie-rules** — writes the project's `AGENTS.md`.
 - **eggie-plan** — writes and works through `docs/plans/<date>-<slug>.md`.
+
+## License
+
+Source-available under the [Functional Source License 1.1 (FSL-1.1-ALv2)](LICENSE.md).
+Each version becomes Apache 2.0 two years after its release.
