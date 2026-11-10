@@ -24,9 +24,9 @@ Can a stranger, or a signed-in person who should not, read, change or break some
 
 | Finding | Usual severity |
 |---|---|
-| private data or a changing action reachable without a check | `fix now` |
+| private data or a changing action reachable without a check | `fix now`; `fix soon` while only the owner uses the project |
 | request input joined into a query, command or path | `fix now` |
-| a live credential in the code or its history | `fix now` |
+| a key for an outside service in the code or its history | `fix now`, whoever uses the project |
 | signed in, but any person can open any other person's records | `fix now` when the data is private |
 | passwords stored readable; sessions that can be forged | `fix now` |
 | a dependency with a known hole that this project's use can reach | `fix soon` |
@@ -36,11 +36,13 @@ Can a stranger, or a signed-in person who should not, read, change or break some
 
 - A known hole in a dependency that this project cannot reach. Note it under *Before going
   live* as "update", not as a finding.
-- Builder's settings while only the owner uses the project.
+- Builder's settings, a placeholder signing secret among them, while only the owner uses
+  the project.
 - Missing hardening with nothing to protect: a page with opening hours needs no sign-in.
 - A hole you suspect and cannot point at. Say you could not check it.
 
-Never try a hole against a project other people are using, and never use a found credential.
+Never try a hole against the running project, whoever uses it, and never use a found
+credential. The code is the evidence.
 
 ## A part too large for one step
 

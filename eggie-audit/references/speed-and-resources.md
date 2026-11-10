@@ -7,9 +7,9 @@ Will it stay fast, and will it fit in the memory it has, as it is used more?
 ## Where to look first
 
 1. **Measure before reading**, when the project runs: `docker stats --no-stream` at rest;
-   again after opening the main pages a few dozen times; the time the main pages take
-   (`curl -s -o /dev/null -w '%{time_total}\n' <url>`). Memory that climbs and does not come
-   back is the finding; the code search below says why.
+   again after opening the main pages a few dozen times (opening only, never submitting);
+   the time the main pages take (`curl -s -o /dev/null -w '%{time_total}\n' <url>`). Memory
+   that climbs and does not come back is the finding; the code search below says why.
 2. **Things that only grow.** Lists, maps, caches and logs held by the process and added to
    on every request, with nothing that removes from them.
 3. **Work that grows with the data.** Loading every record to show ten; a query inside a

@@ -6,9 +6,9 @@ Can this be changed without breaking it — by an agent that has never seen it b
 
 ## Where to look first
 
-1. **The safety net.** Run the project's tests in a container. Do they pass? Then read a
-   few: would they fail if the logic that matters broke, or do they only prove that pages
-   load and functions exist?
+1. **The safety net.** Run the project's tests on a copy outside the project folder, with
+   their own empty data. Do they pass? Then read a few: would they fail if the logic that
+   matters broke, or do they only prove that pages load and functions exist?
 2. **The files that change most** (`git log --format= --name-only | sort | uniq -c | sort -rn
    | head`). They show where work happens, and where a tangle costs the most.
 3. **The largest files and functions.** Size alone is not a finding; one function doing five

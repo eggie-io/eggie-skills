@@ -37,10 +37,11 @@ for the changes the owner is likely to ask for next?
 
 ## Settling `cheaper to rebuild`
 
-This step is the one that may say it. Say it only when all three hold, each with evidence:
-the cross-cutting `fix now` findings sit in most parts; repairing them means rewriting most
-of the project's own code; and the brief can be met by a much smaller or more standard
-project. Otherwise the verdict is `needs serious repair`, with the order of repairs.
+This step, or a quick look that read most of the project's own code, may say it. Say it
+only when all three hold, each with evidence: the cross-cutting `fix now` findings sit in
+most parts; repairing them means rewriting most of the project's own code; and the brief
+can be met by a much smaller or more standard project. Otherwise the verdict is `needs
+serious repair`, with the order of repairs.
 
 ## A project too large for one step
 

@@ -38,9 +38,10 @@ Rules of shape:
   edited content, so the owner can put real content in early.
 - Items in the brief's *Later* section are not steps.
 - A repair plan is `docs/plans/<date>-audit-repairs.md` and its first line names the
-  findings: `Spec: docs/audit.md (F1, F3)`. Each step's check shows the finding is gone and
-  the project still does what it did. Ticking the step sets that finding to `fixed <date>`
-  in `docs/audit.md`.
+  findings: `Spec: docs/audit.md (F1, F3)`. A finding may take several steps; the step that
+  finishes it carries the check that the finding is gone and the project still does what it
+  did, and ticking that step sets the finding to `fixed <date>` in `docs/audit.md`. When the
+  plan's last finding is fixed, revise the report's verdict from what is still open.
 
 ```markdown
 # First slice — plan

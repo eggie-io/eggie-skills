@@ -74,8 +74,9 @@ Size it first, by what you can observe:
 When in doubt, the larger size. A small change that grows while you work is re-sized to a
 feature there and then — spec, plan, continue — never finished as if it were still small.
 No `AGENTS.md` in the project → **use `eggie-rules`** before either.
-`docs/audit.md` lists an open `fix now` finding in the part you are about to change → say
-so once, in plain words, before starting, and carry on with what the owner answers.
+`docs/audit.md` lists a `fix now` finding not yet `fixed` in the part you are about to
+change → say so once, in plain words, before starting, and carry on with what the owner
+answers.
 
 ## 2. The Eggie compose contract
 

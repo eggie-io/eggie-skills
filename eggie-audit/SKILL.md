@@ -18,13 +18,20 @@ never reads every file, and never goes silent for an hour before saying anything
 
 - `docs/brief.md` and `docs/stack.md` say what the project is for, and every finding is judged
   against that. Missing → **use `eggie-rules`** first.
-- `docs/audit.md` exists → read it and continue from its *Coverage* table. Start over only
-  when the owner asks for a fresh audit.
-- Ask the owner once, before any verdict: **"Is anyone besides you using this yet?"** Write
-  the answer into the report. A brief that says "customers" describes a plan, not today.
-- The audit writes one file, `docs/audit.md`. It fixes nothing and leaves nothing else behind
-  in the project: no caches, no scratch files, no installed tools. What you need to run, run
-  in a container or outside the project folder.
+- `docs/audit.md` exists → read it and continue from its *Coverage* table; start over only
+  when the owner asks for a fresh audit. First make it true again: where `git log` shows
+  changes since *Last updated*, re-check the open findings in the parts that changed and
+  correct the verdict.
+- Ask the owner, once in every session and before any verdict: **"Is anyone besides you
+  using this yet?"** Write the answer into the report. A brief that says "customers"
+  describes a plan, and an answer from last month describes last month.
+- The audit watches and reads; it never disturbs. Do not stop, restart or rebuild the
+  project, and send it no request that changes anything: a restart is exactly what wipes an
+  app that keeps its data in memory. The evidence for a hole is the code, never a try.
+- It writes one file, `docs/audit.md`, fixes nothing and leaves nothing else behind in the
+  project: no caches, no scratch files, no installed tools. Tests and checks run on a copy
+  of the project outside its folder, with their own empty data — never through the
+  project's own services, which hold the owner's data.
 
 ## The quick look
 
@@ -45,9 +52,9 @@ A survey with a fixed budget that does not grow with the project.
    | Data | where what the app must remember is kept, and what a restart does to it |
    | Settings and secrets | credentials written into the code or committed; switches meant for building |
    | Access | which pages and actions answer without signing in; accounts with a default password |
-   | Dependencies | declared and pinned; how old; known holes, when the ecosystem has a check for them (run it in a container or on a copy outside the project) |
-   | Safety net | whether tests exist, run and pass, and whether they test logic that matters |
-   | Running behaviour | `docker stats --no-stream` at rest, errors in `eggie logs`, time to start |
+   | Dependencies | declared and pinned; how old; known holes, when the ecosystem has a check for them (run on a copy outside the project) |
+   | Safety net | whether tests exist, run and pass (on a copy outside the project), and whether they test logic that matters |
+   | Running behaviour | this project's containers in `docker stats --no-stream` at rest; errors and the time it took to start, as `eggie logs` shows them |
    | Structure | what the files you read show: one giant file, logic copied around, one decision spread through many places |
 
    Not running → the running check is recorded as not looked at. Never estimate memory or
@@ -97,8 +104,8 @@ next one is theirs to choose, also when the next part is small and you are alrea
   and do not touch the verdict. Once other people use it they are `fix now` findings. A
   problem that hurts the owner alone, such as data lost on restart, is a finding either way.
   So is a missing part, which is not a setting: private pages with no sign-in are `fix soon`
-  while only the owner can reach them and `fix now` once anyone else can. So is a key for an
-  outside service written into the code, whoever uses the project.
+  while only the owner uses the project and `fix now` once anyone else does. So is a key
+  for an outside service written into the code: `fix now`, whoever uses the project.
 - **Good news to the same standard.** *In good shape* lists what is right, each line with its
   evidence, so a good project learns why it is good.
 - **Say what you did not look at.**
@@ -117,10 +124,16 @@ findings has two; do not look for a third to fill the page.
 
 | Verdict | When |
 |---|---|
-| `solid` | no `fix now`; any `fix soon` findings are few and stay inside one part |
-| `sound, needs some repairs` | `fix now` or `fix soon` findings, each repairable inside the part where it sits |
+| `solid` | no `fix now`; at most a couple of `fix soon` findings, inside one part |
+| `sound, needs some repairs` | a `fix now`, or several `fix soon` findings, each repairable inside the part where it sits |
 | `needs serious repair` | a finding that cuts across parts — how data is kept, how access is checked, how parts depend on each other — and the structure can carry the repair |
 | `cheaper to rebuild` | cross-cutting `fix now` findings in most parts, so that repairing means rewriting most of the project's own code |
+
+How bad outranks where. A project that cannot yet do what the brief says it is for — it
+loses what it must remember, or its main job does not work — is never `solid` or `sound`,
+however few files the repair touches; it is `needs serious repair` at the least. On a project that is a single part, "cuts across"
+means the repair changes how most of the code reaches its data or checks who is asking. One
+finding about the whole project, such as no tests anywhere, is still one finding.
 
 The verdict names the depth it rests on ("from a quick look"). A quick look that did not read
 most of the project's own code never says `cheaper to rebuild`: it says `needs serious
@@ -171,8 +184,11 @@ A `developer` gets the same findings with files, lines, causes and the report's 
 
 Offer to fix only when there are `fix now` or `fix soon` findings. Below `developer`,
 recommend a set — the `fix now` ones first — and ask yes or no; never ask the owner to choose
-between technical options. Yes → set those findings to `planned`, then **use `eggie-plan`**
-with them.
+between technical options. Yes → **use `eggie-plan`** with them, and once the plan file is
+written set those findings to `planned` with its path.
+
+When the repairs are done, come back to the report: revise *Verdict* and *What matters most*
+from the findings still open, and tell the owner the new verdict.
 
 `cheaper to rebuild` → say why in plain words and ask before anything else. Yes → a new
 project through `eggie-setup`'s flow for a new app, starting from the existing
