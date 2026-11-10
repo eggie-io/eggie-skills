@@ -43,5 +43,7 @@ Listed here, not as findings, while only the owner uses the project. -->
 
 | Area | Part | Looked | Depth |
 |---|---|---|---|
+| quick look | whole project | <date> | seven checks, N files read in full |
+| <one of the six areas> | <part> | <date, or "no"> | <what was read and what was searched> |
 
 Not looked at: <what, and why — not running, out of the step's part, someone else's code>

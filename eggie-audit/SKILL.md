@@ -35,8 +35,9 @@ A survey with a fixed budget that does not grow with the project.
    would name. Mark code someone else maintains — a platform the project is built on,
    libraries copied into the tree, generated files. That code is out of scope, with two
    questions kept: has it been edited in place, and how far behind its current release is it.
-2. **Read at most 12 files in full**: the entry points, then the largest and the most-changed
-   files of the project's own code. A project smaller than that is read whole.
+2. **Read at most 12 files of the project's own code in full**: the entry points, then the
+   largest and the most-changed. The brief, the stack record and the few files that say how
+   the project is built and run do not count. A project smaller than that is read whole.
 3. **Seven checks**, each answered from evidence:
 
    | Check | Look at |
@@ -44,7 +45,7 @@ A survey with a fixed budget that does not grow with the project.
    | Data | where what the app must remember is kept, and what a restart does to it |
    | Settings and secrets | credentials written into the code or committed; switches meant for building |
    | Access | which pages and actions answer without signing in; accounts with a default password |
-   | Dependencies | declared and pinned; how old; the ecosystem's own check for known holes, run in a container, when one exists |
+   | Dependencies | declared and pinned; how old; known holes, when the ecosystem has a check for them (run it in a container or on a copy outside the project) |
    | Safety net | whether tests exist, run and pass, and whether they test logic that matters |
    | Running behaviour | `docker stats --no-stream` at rest, errors in `eggie logs`, time to start |
    | Structure | what the files you read show: one giant file, logic copied around, one decision spread through many places |
@@ -95,6 +96,9 @@ next one is theirs to choose, also when the next part is small and you are alrea
   created for the owner — go under *Before going live* while only the owner uses the project,
   and do not touch the verdict. Once other people use it they are `fix now` findings. A
   problem that hurts the owner alone, such as data lost on restart, is a finding either way.
+  So is a missing part, which is not a setting: private pages with no sign-in are `fix soon`
+  while only the owner can reach them and `fix now` once anyone else can. So is a key for an
+  outside service written into the code, whoever uses the project.
 - **Good news to the same standard.** *In good shape* lists what is right, each line with its
   evidence, so a good project learns why it is good.
 - **Say what you did not look at.**
@@ -105,8 +109,9 @@ next one is theirs to choose, also when the next part is small and you are alrea
 | `fix soon` | will hurt as the project grows or is changed |
 | `worth knowing` | real, with a small consequence |
 
-Findings are numbered `F1`, `F2`… in the order found and listed worst first. A project with
-two findings has two; do not look for a third to fill the page.
+Findings are numbered `F1`, `F2`… in the order found and listed worst first. Each carries
+the nearest of the six areas above, also when the quick look found it. A project with two
+findings has two; do not look for a third to fill the page.
 
 ## The verdict
 
@@ -139,6 +144,11 @@ goes wherever the project is sent.
 One message per step, in this shape: the verdict and what it rests on · at most five things
 that matter, worst first, each with what it means for them · what is in good shape, briefly ·
 what you did not look at · one question. Everything else stays in the report.
+
+The question is the same after the quick look as after a deep step: continue with the step
+you recommend, stop, or — when there is something to fix — start fixing. When the project
+was small enough to read whole and a deeper look would add little, say so and recommend the
+repairs instead of a step.
 
 Below `developer` (the level in `~/.eggie/owner.md`), no file names and no technology words:
 
