@@ -1,6 +1,6 @@
 ---
 name: eggie-user-help
-description: Use when the owner asks how to use Eggie itself — how to do something in Eggie, where something is in the Eggie app or console, what an Eggie feature does, or why something in Eggie does not work (installing, signing in, connecting an agent, starting, sharing or deleting a project, secrets, files, cloud kitchen, updates). This is for explaining Eggie to the owner, not for your own work with Eggie; setting up, running or fixing a project is eggie-setup.
+description: Use when the owner asks how to use Eggie itself — how to do something in Eggie, where something is in the Eggie app or console, what an Eggie feature does, or why something in Eggie does not work (installing, signing in, connecting an agent, starting, sharing or deleting a project, secrets, files, cloud kitchen, updates). This is for explaining Eggie to the owner, not for your own work with Eggie; building, importing or changing a project is eggie-setup.
 ---
 
 # Explaining Eggie to the owner
@@ -32,7 +32,7 @@ their content.
 - Uninstall: https://eggie.io/docs/app/uninstall (how do I remove Eggie; what is deleted; how do I keep my projects first)
 - Safety: https://eggie.io/docs/safety (what does Eggie protect; what can my agent reach; are there backups; who can see my projects)
 - FAQ: https://eggie.io/docs/faq (do I need to code or have Docker; which agents work; where are my project files; does it work offline; what happens when I close the window)
-- Troubleshooting: https://eggie.io/docs/troubleshooting (setup stops or fails; the kitchen or an address does not open; session expired; a project will not start; the agent cannot find the kitchen; what is Doctor)
+- Troubleshooting: https://eggie.io/docs/troubleshooting (setup stops or fails; the kitchen or an address does not open; session expired; a project will not start; the agent cannot find the kitchen; a sign-in link does not open the browser; exec format error on a Mac; what is Doctor)
 
 ## Answering rules
 
@@ -46,8 +46,9 @@ their content.
    the page cannot be fetched, say so and link to https://eggie.io/docs. Never guess how
    Eggie works, and do not fill a gap from Eggie's source code, files in the kitchen or
    your own work there.
-3. The owner is not technical. Write in plain language, as numbered steps through the Eggie
-   app and console, naming buttons as the page spells them. A terminal command or a
-   technical term appears only when the docs page itself tells the owner to use it.
+3. The owner is not technical. Write in plain language. When the answer is something to
+   do, give it as numbered steps through the Eggie app and console, naming buttons as the
+   page spells them. A terminal command or a technical term appears only when the docs
+   page itself tells the owner to use it.
 4. Reply in the language the owner wrote in.
 5. End with a link to each docs page the answer came from.
