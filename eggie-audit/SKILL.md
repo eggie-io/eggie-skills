@@ -129,11 +129,12 @@ findings has two; do not look for a third to fill the page.
 | `needs serious repair` | a finding that cuts across parts — how data is kept, how access is checked, how parts depend on each other — and the structure can carry the repair |
 | `cheaper to rebuild` | cross-cutting `fix now` findings in most parts, so that repairing means rewriting most of the project's own code |
 
-How bad outranks where. A project that cannot yet do what the brief says it is for — it
-loses what it must remember, or its main job does not work — is never `solid` or `sound`,
-however few files the repair touches; it is `needs serious repair` at the least. On a project that is a single part, "cuts across"
-means the repair changes how most of the code reaches its data or checks who is asking. One
-finding about the whole project, such as no tests anywhere, is still one finding.
+How bad outranks where. A project that cannot yet do what the brief says it is for — it loses
+what it must remember, or its main job does not work — is never `solid` or `sound`, however
+few files the repair touches; it is `needs serious repair` at the least. On a project that is
+a single part, "cuts across" means the repair changes how most of the code reaches its data
+or checks who is asking. One finding about the whole project, such as no tests anywhere, is
+still one finding.
 
 The verdict names the depth it rests on ("from a quick look"). A quick look that did not read
 most of the project's own code never says `cheaper to rebuild`: it says `needs serious
