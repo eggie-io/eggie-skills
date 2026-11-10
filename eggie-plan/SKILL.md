@@ -13,9 +13,10 @@ memory. The owner gets the URL and plain words at the end; only a `developer` (t
 
 ## Input
 
-`docs/brief.md` (a new project: its *First slice* section) or `docs/specs/<date>-<slug>.md`
-(a change). No brief or spec → **use `eggie-brainstorm`** first. No `AGENTS.md` → **use
-`eggie-rules`** first.
+`docs/brief.md` (a new project: its *First slice* section), `docs/specs/<date>-<slug>.md`
+(a change), or `docs/audit.md` (repairs: the findings the owner agreed to fix, handed over
+by `eggie-audit`). No brief, spec or findings → **use `eggie-brainstorm`** first. No
+`AGENTS.md` → **use `eggie-rules`** first.
 
 ## Write `docs/plans/<date>-<slug>.md`
 
@@ -36,6 +37,10 @@ Rules of shape:
 - Data model before screens that show it; the editing screen before the pages that display
   edited content, so the owner can put real content in early.
 - Items in the brief's *Later* section are not steps.
+- A repair plan is `docs/plans/<date>-audit-repairs.md` and its first line names the
+  findings: `Spec: docs/audit.md (F1, F3)`. Each step's check shows the finding is gone and
+  the project still does what it did. Ticking the step sets that finding to `fixed <date>`
+  in `docs/audit.md`.
 
 ```markdown
 # First slice — plan

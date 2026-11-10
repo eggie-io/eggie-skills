@@ -55,7 +55,12 @@ rules; they take minutes and save the rebuild.
 2. Once the URL answers: **use `eggie-rules`** (its *Existing project* path) so the project
    has `docs/brief.md`, `docs/stack.md` and `AGENTS.md` before anyone changes it. The URL
    comes first because it is what the owner is waiting for; the notes take minutes.
-3. Then the owner's change, if they asked for one → flow C.
+3. Offer a check, once, also when the owner already asked for a change: one question,
+   whether they want to know what shape the project is in before anything is changed. Say a
+   quick look takes a few minutes and that deeper looks — security, how it keeps its data,
+   speed, how the code is organised, readiness to go live — are there afterwards. Yes →
+   **use `eggie-audit`**. No → carry on.
+4. Then the owner's change, if they asked for one → flow C.
 
 ## Flow C: a change to a project that is here
 
@@ -69,6 +74,8 @@ Size it first, by what you can observe:
 When in doubt, the larger size. A small change that grows while you work is re-sized to a
 feature there and then — spec, plan, continue — never finished as if it were still small.
 No `AGENTS.md` in the project → **use `eggie-rules`** before either.
+`docs/audit.md` lists an open `fix now` finding in the part you are about to change → say
+so once, in plain words, before starting, and carry on with what the owner answers.
 
 ## 2. The Eggie compose contract
 
