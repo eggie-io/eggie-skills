@@ -111,4 +111,4 @@ Every compose file, written by you or adapted from a recipe, follows this; the r
 3. On a failure or no answer: read `eggie logs`, fix the cause, run `eggie up` again.
 4. Give the owner the URL in one plain sentence, with any login you created for them.
 5. Anything the owner will need again outside the chat (a QR code for their phone, store or
-   deploy steps, that login): write it as a page with **`eggie-pages`**.
+   deploy steps, where to sign in): write it as a page with **`eggie-pages`**.
