@@ -43,7 +43,11 @@ Plain Markdown: headings, lists, tables, `code`, quotes, links.
   ```
   ````
 
-  Run `eggie actions` and use only the ids it lists; never invent one. An id Eggie does not know
+  Run `eggie actions` in the project folder (or with `--project <id>`) and use only the ids it
+  lists; never invent one. It prints `id  type  name` only, so say what the button will ask for
+  from the recipe's own instructions and the action's name, not a guess. An id you need is not
+  listed: the recipe is not added yet, so run `eggie recipe add <slug>`; if no recipe has it,
+  tell the owner there is no such action. An id Eggie does not know
   shows an error card with no button. Put the block where the step belongs, then tell the owner
   to press it and what it will ask for (their Apple ID, a code on their phone). They sign in
   themselves, so never write a command for them to paste instead, and do not run the action's

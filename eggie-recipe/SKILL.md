@@ -19,15 +19,17 @@ level `~/.eggie/owner.md` names.
    that project. Where two recipes ask for different things, ask the owner which way to go.
 4. **A recipe that becomes a project:** ask the owner what to call it, in one question, offering
    the recipe's slug as the default. Copy everything, hidden files too (`.eggie/` holds the
-   project's routing): `mkdir ~/projects/<name> && cp -a <folder>/. ~/projects/<name>/ && rm
-   ~/projects/<name>/RECIPE.md`, then run `eggie recipe add <slug>` there (nothing changes if the
-   template's `project.yml` already lists it) and `eggie up`. The template's `.eggie/docs/` pages
-   come along with the copy.
-   **A recipe added to a project the owner already has:** after following it, run
-   `eggie recipe add <slug>` in that project and copy the bundle's `.eggie/docs/*.md` pages into
-   the project's `.eggie/docs/`. Ask before overwriting a page with the same name.
-   Never copy `actions.yml` into a project: it does nothing there. Actions come only from Eggie,
-   through `eggie recipe add`; `eggie actions` lists them.
+   project's routing), without the recipe-only files: `mkdir ~/projects/<name> && cp -a
+   <folder>/. ~/projects/<name>/ && rm -f ~/projects/<name>/RECIPE.md
+   ~/projects/<name>/actions.yml`. Then, in `~/projects/<name>`, run `eggie recipe add <slug>`
+   (nothing changes if the template's `project.yml` already lists it) and `eggie up`. The
+   template's `.eggie/docs/` pages come along with the copy.
+   - **A recipe added to a project the owner already has:** after following it, run
+     `eggie recipe add <slug>` in that project's folder (or with `--project <id>`) and copy the
+     bundle's `.eggie/docs/*.md` pages into the project's `.eggie/docs/`. Ask before
+     overwriting a page with the same name.
+   - **In both cases** never put `actions.yml` in a project: it does nothing there. Actions come
+     only from Eggie, through `eggie recipe add`; `eggie actions` lists them.
 5. **The recipe already decided the brief and the stack.** Skip `eggie-brainstorm` and
    `eggie-stack` unless `RECIPE.md` hands off to them.
 6. **Ask first** before anything that runs for a long time (hours of processing) and before
