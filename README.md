@@ -19,6 +19,8 @@ to install.
 - **eggie-stack** — chooses adopt, assemble or build, and records `docs/stack.md`.
 - **eggie-rules** — writes the project's `AGENTS.md`.
 - **eggie-plan** — writes and works through `docs/plans/<date>-<slug>.md`.
+- **eggie-recipe** — downloads an Eggie recipe with `eggie recipe get` and follows its
+  `RECIPE.md`.
 - **eggie-pages** — pages the owner keeps, in `.eggie/docs/`, shown under Docs in Eggie.
 - **eggie-audit** — an independent check of a project's quality, written up as `docs/audit.md`.
 - **eggie-user-help** — answers the owner's questions about using Eggie from the

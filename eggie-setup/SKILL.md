@@ -15,6 +15,7 @@ Eggie instructions and write the file first.
 
 | The owner gives you | Do |
 |---|---|
+| An Eggie recipe ("download the Eggie recipe …", a line from the Eggie website) | **use `eggie-recipe`** |
 | A description of an app | `eggie new <name>`, then flow A |
 | A repository URL | `eggie clone <url>` — it also starts the project if it can; then flow B |
 | An archive (zip, tar) | unpack it so its `docker-compose.yml` sits directly in `~/projects/<name>/`; flow B |
