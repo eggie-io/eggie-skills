@@ -56,3 +56,18 @@ def test_every_bundled_file_a_skill_points_at_exists():
     for folder, skill_md in _skills().items():
         for rel in set(_LOCAL_FILE.findall(skill_md.read_text())):
             assert (skill_md.parent / rel).is_file(), f"{folder}: {rel}"
+
+
+def test_audit_skill_names_no_stack():
+    # The audit reads every project the same way; a stack named in its text
+    # becomes the lens every other project gets judged through.
+    recipes = (ROOT / "eggie-stack" / "references").glob("*.md")
+    # "payload" is also an ordinary word in security guidance
+    names = {part for r in recipes for part in r.stem.split("-")} - {"payload"}
+    assert len(names) >= 8, sorted(names)
+    files = list((ROOT / "eggie-audit").rglob("*.md"))
+    assert files, "eggie-audit has no files"
+    for path in files:
+        text = path.read_text().lower()
+        for name in names:
+            assert not re.search(rf"\b{name}\b", text), f"{path.relative_to(ROOT)} names {name}"
