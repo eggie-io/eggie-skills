@@ -19,6 +19,7 @@ the same file. The project's documents live next to it:
 | `CLAUDE.md` | `@AGENTS.md` | this skill |
 | `docs/brief.md` | what the owner asked for | `eggie-brainstorm`, or this skill when reconstructing |
 | `docs/stack.md` | what it is built with and why | `eggie-stack`, or this skill when detecting |
+| `docs/audit.md` | what shape the project is in, and what was checked | `eggie-audit` |
 | `docs/specs/`, `docs/plans/` | one file per change | `eggie-brainstorm`, `eggie-plan` |
 
 ## Which path

@@ -20,6 +20,7 @@ to install.
 - **eggie-rules** — writes the project's `AGENTS.md`.
 - **eggie-plan** — writes and works through `docs/plans/<date>-<slug>.md`.
 - **eggie-pages** — pages the owner keeps, in `.eggie/docs/`, shown under Docs in Eggie.
+- **eggie-audit** — an independent check of a project's quality, written up as `docs/audit.md`.
 - **eggie-user-help** — answers the owner's questions about using Eggie from the
   [official docs](https://eggie.io/docs).
 
