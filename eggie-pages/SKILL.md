@@ -41,8 +41,8 @@ Plain Markdown: headings, lists, tables, `code`, quotes, links.
 - Only what the owner acts on: what to open, what to tap, where to sign in, what to do next.
   Write at the owner's level from `~/.eggie/owner.md`.
 - Never a password or a secret value: pages are committed and travel with the project. Write the
-  user name and where to sign in; give the password in the chat. Keys for outside services are
-  on the **Secrets** page.
+  user name and where to sign in; give the password in the chat and ask them to save it. Keys
+  for outside services are on the **Secrets** page.
 - When a fact on a page changes (a new address, a step done), update the page in the same
   change. Delete a page that no longer applies.
 
