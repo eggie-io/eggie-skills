@@ -19,6 +19,8 @@ to install.
 - **eggie-stack** — chooses adopt, assemble or build, and records `docs/stack.md`.
 - **eggie-rules** — writes the project's `AGENTS.md`.
 - **eggie-plan** — writes and works through `docs/plans/<date>-<slug>.md`.
+- **eggie-recipe** — downloads an Eggie recipe with `eggie recipe get` and follows its
+  `RECIPE.md`.
 - **eggie-user-help** — answers the owner's questions about using Eggie from the
   [official docs](https://eggie.io/docs).
 
