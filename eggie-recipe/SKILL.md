@@ -18,8 +18,9 @@ level `~/.eggie/owner.md` names.
 3. **Several recipes:** follow the one that creates the project first, then apply the others to
    that project. Where two recipes ask for different things, ask the owner which way to go.
 4. **A recipe that becomes a project:** ask the owner what to call it, in one question, offering
-   the recipe's slug as the default. Copy the folder's contents into `~/projects/<name>`, leaving
-   `RECIPE.md` out, then `eggie up`.
+   the recipe's slug as the default. Copy everything, hidden files too (`.eggie/` holds the
+   project's routing): `mkdir ~/projects/<name> && cp -a <folder>/. ~/projects/<name>/ && rm
+   ~/projects/<name>/RECIPE.md`, then `eggie up` there.
 5. **The recipe already decided the brief and the stack.** Skip `eggie-brainstorm` and
    `eggie-stack` unless `RECIPE.md` hands off to them.
 6. **Ask first** before anything that runs for a long time (hours of processing) and before
