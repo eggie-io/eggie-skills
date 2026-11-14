@@ -34,6 +34,25 @@ Plain Markdown: headings, lists, tables, `code`, quotes, links.
   next to it, `![Logo](../../public/logo.png)` elsewhere. Images from other websites are not shown.
 - **Links** — another page: `[Publish to the stores](stores.md)`. A website: a full `https://`
   address; it opens in the owner's browser.
+- **Buttons** — a fenced block with the language `action` and one action id. Eggie shows a card
+  with what the action does, its exact command and a **Run** (or **Start**/**Stop**) button:
+
+  ````
+  ```action
+  ios-build
+  ```
+  ````
+
+  Run `eggie actions` in the project folder (or with `--project <id>`) and use only the ids it
+  lists; never invent one. It prints `id  type  name` only, so say what the button will ask for
+  from the recipe's own instructions and the action's name, not a guess. An id you need is not
+  listed: the recipe is not added yet, so run `eggie recipe add <slug>`; if no recipe has it,
+  tell the owner there is no such action. An id Eggie does not know
+  shows an error card with no button. Put the block where the step belongs, then tell the owner
+  to press it and what it will ask for (their Apple ID, a code on their phone). They sign in
+  themselves, so never write a command for them to paste instead, and do not run the action's
+  command for them: if they ask, explain the button is the way because it needs their own
+  sign-in. You cannot define actions; they come only from Eggie recipes (`eggie recipe add`).
 - **No HTML.** It is shown as text, not run.
 
 ## What goes on a page
