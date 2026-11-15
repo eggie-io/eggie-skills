@@ -44,8 +44,9 @@ Plain Markdown: headings, lists, tables, `code`, quotes, links.
   ````
 
   Run `eggie actions` in the project folder (or with `--project <id>`) and use only the ids it
-  lists; never invent one. It prints `id  type  name` only, so say what the button will ask for
-  from the recipe's own instructions and the action's name, not a guess. An id you need is not
+  lists; never invent one. It prints `id  type  name`, plus `(uses expo, apple)` for an action that
+  needs sign-ins: tell the owner the card will ask them to connect or sign in to those, and take the
+  rest of what it asks from the recipe's own instructions, not a guess. An id you need is not
   listed: the recipe is not added yet, so run `eggie recipe add <slug>`; if no recipe has it,
   tell the owner there is no such action. An id Eggie does not know
   shows an error card with no button. The card itself carries the sign-ins the action lists: a
