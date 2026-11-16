@@ -30,6 +30,29 @@ Plain Markdown: headings, lists, tables, `code`, quotes, links.
   ```
   ````
 
+- **Secret field** — a fenced block with the language `secret` and a `name:` line; the console
+  draws a field the owner pastes the value into. Values are never shown. One block per
+  credential; the text around it is the label and the steps to get it:
+
+  ````
+  ```secret
+  name: EXPO_TOKEN
+  ```
+  ````
+
+  For a key file add `file: true`; the owner uploads it (up to 64 KB). It is mounted read-only in
+  every service at `/run/secrets/NAME`, and the env var `NAME` holds that path. `name` uses letters, digits and `_`, not starting with a
+  digit, and not `PATH`, `HOME` or starting `COMPOSE_`, `DOCKER_`, `LD_`, `BUILDX_`, `BUILDKIT_`;
+  a bad block shows as plain code. Without a page, `eggie secret request NAME "hint" --file` asks
+  for a file on the Secrets page.
+
+  Secrets reach a container only when it starts. After the owner saves, run `eggie secret list`
+  before using it; if it says "Run `eggie up` to apply the changes.", run `eggie up` and tell the
+  owner the project restarts (pages have no restart button). Use secrets with
+  `docker compose exec <service> ...`, never `docker compose run`: it skips Eggie's overlay, so
+  no secrets or mounts. `$NAME` is empty in your own shell, so expand it inside the container:
+  `docker compose exec <service> sh -c 'EXPO_ASC_API_KEY_PATH="$ASC_API_KEY" eas …'`.
+
 - **Images** — a file in the project, linked by a path relative to the page: `![Home screen](home.png)`
   next to it, `![Logo](../../public/logo.png)` elsewhere. Images from other websites are not shown.
 - **Links** — another page: `[Publish to the stores](stores.md)`. A website: a full `https://`
@@ -42,7 +65,7 @@ Plain Markdown: headings, lists, tables, `code`, quotes, links.
   Write at the owner's level from `~/.eggie/owner.md`.
 - Never a password or a secret value: pages are committed and travel with the project. Write the
   user name and where to sign in; give the password in the chat and ask them to save it. Keys
-  for outside services are on the **Secrets** page.
+  for outside services go in a `secret` block or on the **Secrets** page.
 - When a fact on a page changes (a new address, a step done), update the page in the same
   change. Delete a page that no longer applies.
 
