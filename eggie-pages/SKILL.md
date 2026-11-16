@@ -41,8 +41,7 @@ Plain Markdown: headings, lists, tables, `code`, quotes, links.
   ````
 
   For a key file add `file: true`; the owner uploads it (up to 64 KB). It is mounted read-only in
-  every service at `/run/secrets/NAME`, and the env var `NAME` holds that path (for example
-  `EXPO_ASC_API_KEY_PATH=$ASC_API_KEY`). `name` uses letters, digits and `_`, not starting with a
+  every service at `/run/secrets/NAME`, and the env var `NAME` holds that path. `name` uses letters, digits and `_`, not starting with a
   digit, and not `PATH`, `HOME` or starting `COMPOSE_`, `DOCKER_`, `LD_`, `BUILDX_`, `BUILDKIT_`;
   a bad block shows as plain code. Without a page, `eggie secret request NAME "hint" --file` asks
   for a file on the Secrets page.
@@ -51,7 +50,8 @@ Plain Markdown: headings, lists, tables, `code`, quotes, links.
   before using it; if it says "Run `eggie up` to apply the changes.", run `eggie up` and tell the
   owner the project restarts (pages have no restart button). Use secrets with
   `docker compose exec <service> ...`, never `docker compose run`: it skips Eggie's overlay, so
-  no secrets or mounts.
+  no secrets or mounts. `$NAME` is empty in your own shell, so expand it inside the container:
+  `docker compose exec <service> sh -c 'EXPO_ASC_API_KEY_PATH="$ASC_API_KEY" eas …'`.
 
 - **Images** — a file in the project, linked by a path relative to the page: `![Home screen](home.png)`
   next to it, `![Logo](../../public/logo.png)` elsewhere. Images from other websites are not shown.
