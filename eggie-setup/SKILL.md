@@ -1,6 +1,6 @@
 ---
 name: eggie-setup
-description: Use when the owner wants a project set up, imported, cloned or running in this Eggie VM — a repository URL, an archive, a folder, or a new app described in plain words — and whenever they ask for a link to open. Use it even when the request is one sentence; it decides how much process the request needs and hands off to the other eggie skills.
+description: Use when the owner wants a project set up, imported, cloned or running in this Eggie VM — a repository URL, an archive, a folder, or a new app described in plain words — and whenever they ask for a link to open or want a project public, live or in production. Use it even when the request is one sentence; it decides how much process the request needs and hands off to the other eggie skills.
 ---
 
 # Setting up a project with Eggie
@@ -121,3 +121,24 @@ Every compose file, written by you or adapted from a recipe, follows this; the r
 4. Give the owner the URL in one plain sentence, with any login you created for them.
 5. Anything the owner will need again outside the chat (a QR code for their phone, store or
    deploy steps, where to sign in): write it as a page with **`eggie-pages`**.
+
+## 4. Going online
+
+The owner wants it public, live, in production, online for others or up while their computer
+is off → it goes to a cloud kitchen (the Kitchen). The owner clicks **Push to Kitchen** on the
+project in the Eggie app; Eggie copies its files and data there, starts it and gives it an
+https address. You do not push it. Do not set up other hosting, a server or a deploy pipeline
+unless the owner asks for one by name. Only showing it to a friend for a while → a public link
+is enough.
+
+Before the first push:
+1. The kitchen's address is open to anyone: real data or admin pages need a login first.
+2. Secret values are not copied, only their names, and the project waits on the kitchen until
+   every secret has a value. Request only secrets the project uses, and tell the owner to enter
+   the live keys on the kitchen's Secrets page (Stripe live, not test).
+3. Offer once a look at readiness to go live: yes → **use `eggie-audit`**.
+
+A second push replaces the kitchen's files and data with the local copy and loses what changed
+there. Once the kitchen holds real data (sign-ups, orders, posts), say so before any push:
+changes are made on the kitchen, with the owner's agent connected to it. The two copies never
+sync. The owner asking how to push, or what a step means → **use `eggie-user-help`**.

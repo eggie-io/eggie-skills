@@ -48,7 +48,9 @@ Plain Markdown: headings, lists, tables, `code`, quotes, links.
 
   Secrets reach a container only when it starts. After the owner saves, run `eggie secret list`
   before using it; if it says "Run `eggie up` to apply the changes.", run `eggie up` and tell the
-  owner the project restarts (pages have no restart button). Use secrets with
+  owner the project restarts (pages have no restart button). Pages travel with the project to a
+  cloud kitchen, values do not: the owner enters them again there, usually live keys instead of
+  test ones, so say on the page which kind to get. Use secrets with
   `docker compose exec <service> ...`, never `docker compose run`: it skips Eggie's overlay, so
   no secrets or mounts. `$NAME` is empty in your own shell, so expand it inside the container:
   `docker compose exec <service> sh -c 'EXPO_ASC_API_KEY_PATH="$ASC_API_KEY" eas …'`.

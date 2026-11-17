@@ -15,6 +15,10 @@ the way it is.
 - Language tools run inside the containers: `docker compose run --rm <service> <command>`.
   Nothing is installed on the VM.
 - `.eggie/overlay.yml` is generated; never edit it. `.eggie/project.yml` is ours.
+- Public, live, production: the owner pushes it to a cloud kitchen with **Push to Kitchen** in
+  the Eggie app; no other hosting unless they ask. Secret values stay behind and are entered
+  on the kitchen. A new push replaces the kitchen's files and data, so once it holds real data,
+  change it on the kitchen.
 
 ## Layout
 <!-- Five lines at most: where pages, data models, styles and tests live. -->
