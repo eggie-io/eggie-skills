@@ -1,6 +1,6 @@
 ---
 name: eggie-user-help
-description: Use when the owner asks how to use Eggie itself — how to do something in Eggie, where something is in the Eggie app or console, what an Eggie feature does, or why something in Eggie does not work (installing, signing in, connecting an agent, starting, sharing or deleting a project, secrets, files, cloud kitchen, updates). This is for explaining Eggie to the owner, not for your own work with Eggie; building, importing or changing a project is eggie-setup.
+description: Use when the owner asks how to use Eggie itself — how to do something in Eggie, where something is in the Eggie app or console, what an Eggie feature does, or why something in Eggie does not work (installing, connecting an agent, starting, sharing, pushing to a cloud kitchen or deleting a project, secrets, files, docs pages, updates). This is for explaining Eggie to the owner, not for your own work with Eggie; building, importing or changing a project is eggie-setup.
 ---
 
 # Explaining Eggie to the owner
@@ -12,11 +12,13 @@ their content.
 ## Docs index
 
 - What Eggie is: https://eggie.io/docs (what are Eggie, the kitchen and the console; how do the app, the console and the agent fit together; where do I start)
+- Quick start: https://eggie.io/docs/quick-start (what are the steps from install to an app online; what do I do first; how do I show it to friends; how do I put it online for good)
 - System requirements: https://eggie.io/docs/requirements (will it run on my Windows or Mac; how much disk space; does it need internet; what does a cloud kitchen need)
 - Install on Windows: https://eggie.io/docs/install/windows (how do I install and sign in on Windows; why does it ask to restart; does it start with Windows; how do I quit it)
 - Install on Mac: https://eggie.io/docs/install/mac (which download is for my Mac; how do I install and sign in; does it open at login; how do I quit it)
 - Desktop or Cloud: https://eggie.io/docs/cloud/choose (what is the difference; which one should I pick; which is free; can I have both)
 - Create a cloud kitchen: https://eggie.io/docs/cloud/kitchen (how do I create one; which region and size; what is the SSH key file; where are its console and project addresses; how do I delete it)
+- Push to a kitchen: https://eggie.io/docs/cloud/push (how do I put a project online so it stays up when my computer is off; make it public, live or production; why must I enter secrets again on the kitchen; what happens when I push again; can I keep working on it there)
 - Connect Claude Code: https://eggie.io/docs/agents/claude-code (how do I connect Claude Code to my kitchen on Cloud, Mac or Windows; where are the connection values)
 - Connect Codex: https://eggie.io/docs/agents/codex (how do I connect Codex to my kitchen on Cloud, Mac or Windows; where are the connection values)
 - Connect Cursor: https://eggie.io/docs/agents/cursor (how do I connect Cursor to my kitchen on Mac or Windows)
@@ -26,6 +28,7 @@ their content.
 - Projects your agent created: https://eggie.io/docs/projects/discovered (why did a project or folder appear by itself; what does adopting a folder do)
 - Upload files: https://eggie.io/docs/projects/files (how do I add photos, PDFs or a database backup to a project; what about big files)
 - Keys and passwords: https://eggie.io/docs/projects/secrets (where do I put an API key or password; why can I not see it again; who can read it)
+- Project docs: https://eggie.io/docs/projects/docs (where are the pages my agent wrote; why is there no Docs item; what can a page show; how do I ask for or fix a page)
 - Share a public link: https://eggie.io/docs/projects/share (how do I show a project to someone else or open it on my phone; how long does the link work; who can open it)
 - Delete a project: https://eggie.io/docs/projects/delete (how do I delete a project; what is removed and what stays)
 - Updates: https://eggie.io/docs/app/updates (how do I update Eggie; which version do I have; what happens to my projects)
