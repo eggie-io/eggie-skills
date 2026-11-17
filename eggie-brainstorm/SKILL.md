@@ -62,7 +62,7 @@ Ask only the rows the description leaves open, in this order.
 | Does it need to remember things between visits: accounts, orders, bookings, notes | what is stored |
 | Should it answer questions, summarize or write things on its own | smart features, and whether documents are processed |
 | Does it connect to anything else: payments, email, a calendar, a spreadsheet | outside services, payments |
-| Will it stay on this computer or go online later; is there hosting already | where it will live |
+| Will it stay on this computer or go online later; is there hosting already | where it will live (online is an Eggie cloud kitchen unless they already have hosting) |
 | What is the smallest version that would already be useful | the first slice |
 | A site whose look you like; the language(s) it should speak | look and feel |
 
@@ -96,7 +96,7 @@ None. (Later: Google Maps embed.)
 None.
 
 ## Where it will live
-On this computer for now; will go online with cheap shared hosting.
+On this computer for now; will go online on an Eggie cloud kitchen.
 
 ## First slice
 Home page with hours and address, menu page with photos, an editing screen the sister can use.

@@ -33,6 +33,7 @@ Three things are findings whoever uses the project, as the main skill says: a ke
 outside service in the code or its history, data that a restart or rebuild loses, and
 private pages with no sign-in. The rest of this list goes under *Before going live* while
 only the owner uses the project, as a plain checklist that does not change the verdict.
+A project pushed to a cloud kitchen is used by other people: its address is open to anyone.
 Once other people use it:
 
 | Finding | Usual severity |
