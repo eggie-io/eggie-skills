@@ -75,6 +75,15 @@ A page the next session reads in a minute. Framework documentation is not repeat
 specific to this project is. If a section grows past ten lines, the extra belongs in a file
 under `docs/` with a one-line pointer here.
 
+## Custom domains
+
+On a Cloud a project can open on the owner's own domain. Only the owner attaches or removes one,
+in the console; there is no `eggie` command for it, and Eggie never edits the project's files for
+it. `eggie status` lists the project's domains and their state (`domain  example.com  active (primary)`).
+Do not set up certificates, a reverse proxy or DNS. Once a domain is `active`, the app may still
+use its old address (login callback URLs, allowed hosts, links it sends): update those when the
+owner asks.
+
 ## Common mistakes
 
 - Leaving template hints (`<!-- … -->`) or the `…` placeholders in the written file.
