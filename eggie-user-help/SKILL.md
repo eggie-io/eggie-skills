@@ -1,6 +1,6 @@
 ---
 name: eggie-user-help
-description: Use when the owner asks how to use Eggie itself — how to do something in Eggie, where something is in the Eggie app or console, what an Eggie feature does, or why something in Eggie does not work (installing, connecting an agent, starting, sharing, pushing to a cloud kitchen or deleting a project, secrets, files, docs pages, updates). This is for explaining Eggie to the owner, not for your own work with Eggie; building, importing or changing a project is eggie-setup.
+description: Use when the owner asks how to use Eggie itself — how to do something in Eggie, where something is in the Eggie app or console, what an Eggie feature does, or why something in Eggie does not work (installing, connecting an agent, starting, sharing, pushing to a cloud kitchen or deleting a project, a custom domain, secrets, files, docs pages, updates). This is for explaining Eggie to the owner, not for your own work with Eggie; building, importing or changing a project is eggie-setup.
 ---
 
 # Explaining Eggie to the owner
@@ -19,6 +19,7 @@ their content.
 - Desktop or Cloud: https://eggie.io/docs/cloud/choose (what is the difference; which one should I pick; which is free; can I have both)
 - Create a cloud kitchen: https://eggie.io/docs/cloud/kitchen (how do I create one; which region and size; what is the SSH key file; where are its console and project addresses; how do I delete it)
 - Push to a kitchen: https://eggie.io/docs/cloud/push (how do I put a project online so it stays up when my computer is off; make it public, live or production; why must I enter secrets again on the kitchen; what happens when I push again; can I keep working on it there)
+- Own domain: https://eggie.io/docs/cloud/domain (how do I open a project on my own domain like example.com; which DNS record do I create and where; what do Waiting for DNS, Getting certificate and Problem mean; how do I use both www and the bare domain; how do I remove a domain; does it work on the Eggie app on my computer)
 - Connect Claude Code: https://eggie.io/docs/agents/claude-code (how do I connect Claude Code to my kitchen on Cloud, Mac or Windows; where are the connection values)
 - Connect Codex: https://eggie.io/docs/agents/codex (how do I connect Codex to my kitchen on Cloud, Mac or Windows; where are the connection values)
 - Connect Cursor: https://eggie.io/docs/agents/cursor (how do I connect Cursor to my kitchen on Mac or Windows)
@@ -30,7 +31,6 @@ their content.
 - Keys and passwords: https://eggie.io/docs/projects/secrets (where do I put an API key or password; why can I not see it again; who can read it)
 - Project docs: https://eggie.io/docs/projects/docs (where are the pages my agent wrote; why is there no Docs item; what can a page show; how do I ask for or fix a page)
 - Share a public link: https://eggie.io/docs/projects/share (how do I show a project to someone else or open it on my phone; how long does the link work; who can open it)
-- Own domain (Cloud only, not the Eggie app on your computer): in the console open the project, then **Custom domain**, type the domain (like `example.com`), press **Add domain**. The page shows one record to create where the domain was bought: an `A` record for `example.com`, a `CNAME` for `www.example.com`; each has a copy button. Eggie keeps checking and gets the certificate by itself, so the page can be closed. Status reads `Waiting for DNS`, `Getting certificate`, `Active` or `Problem` (it says why and what to do); **Check now** looks again. With several domains one is the main one and the others redirect to it. To remove one: the row's menu, **Remove**, then delete the record at the registrar too
 - Delete a project: https://eggie.io/docs/projects/delete (how do I delete a project; what is removed and what stays)
 - Updates: https://eggie.io/docs/app/updates (how do I update Eggie; which version do I have; what happens to my projects)
 - Uninstall: https://eggie.io/docs/app/uninstall (how do I remove Eggie; what is deleted; how do I keep my projects first)
